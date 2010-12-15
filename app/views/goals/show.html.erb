@@ -1,0 +1,19 @@
+<div class="header">
+    <b>Goal</b>
+</div>
+
+<div style="font-size:large;font-weight:bold">
+    #<%= display_goal :priority %>) <%= display_goal :name %> - <%= display_goal :percent_complete %>% complete.
+</div>
+
+<div style="padding:15px">
+    <%= display_goal :description %>
+</div>
+
+<div class="error_message">
+    <%= display_goal :obstacles %>
+</div>
+
+<p>
+
+<%= link_to 'Edit', edit_goal_path(@goal) %>

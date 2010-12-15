@@ -1,0 +1,13 @@
+Report
+======
+<% @report.entries.each do |entry| -%>
+### <%=h entry[:subject] %> <%=h "[" + entry[:ticket] + "]" unless entry[:ticket].to_s.empty? %> - <%= entry[:date] %> ###
+<% num_descs = entry[:description].length -%>
+<% desc_num = 1 -%>
+<% entry[:description].each do |desc| -%>
+<%=h desc.rstrip %>
+
+<%=h "-----\n\n" unless desc_num == num_descs -%>
+<% desc_num = desc_num + 1 -%>
+<% end -%>
+<% end -%>

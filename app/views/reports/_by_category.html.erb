@@ -1,0 +1,21 @@
+Report
+======
+<% @report.entries.keys.sort.each do |cat| -%>
+<% entries = @report.entries[cat] -%>
+
+<% unless entries.nil? || entries.empty? %>
+<%=h cat %>
+-----------
+<% entries.each do |e|-%>
+#### <%=h e.task_date.strftime("%A (%m/%d/%Y)") %> -- <%=h e.subject %> <%= e.ticket_num.to_s.empty? ? '' : "([#{e.ticket_num.to_s}](http://jira.mcclatchyinteractive.com/browse/#{e.ticket_num.to_s}))" %> ####
+<% unless e.goal.nil? -%>
+Goal: <%=h e.goal.name %> <%=h '[' + e.goal.percent_complete.to_s + '%]'%>
+
+<% end -%>
+<% unless cat == Entry::CATEGORY_MEETING || cat == Entry::CATEGORY_CODE_REVIEW -%>
+<%=h e.description.rstrip %>
+
+<% end -%>
+<% end -%>
+<% end -%>
+<% end -%>

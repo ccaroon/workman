@@ -1,0 +1,35 @@
+<div class="header">
+    <b><%= controller.action_name.capitalize %> Note</b>
+</div>
+
+<div style="padding-left:50px;padding-top:25px">
+
+<% form_for(@note) do |f| %>
+    <%= f.error_messages %>
+
+    <b><%= f.label :title %>:</b>
+    <%= f.text_field :title, :size => 25 %>
+    <p>
+    <b><%= f.label :is_favorite, "Mark as Favorite?" %>:</b>
+    <%= f.check_box :is_favorite %>
+
+    <b><%= f.label :is_encrypted, "Encrypt?" %>:</b>
+    <%= f.check_box :is_encrypted%>
+
+    <p>
+    <b><%= f.label :body %>:</b>
+    <br>
+<%#        This does not work because the f.text_area tag apparently does NOT call
+<%#        the 'body' method of @note to get the data, thus the encrypted data is
+<%#        displayed instead of the cleartext.
+<%#    <%= f.text_area :body, :rows => 35, :cols => 80, :wrap => 'physical' %>
+    <textarea rows="35" cols="80" wrap="physical" id="note_body" name="note[body]"><%= @note.body %></textarea>
+
+    <p><%= f.submit "Save" %></p>
+<% end %>
+
+<%= link_to 'Show', @note %>
+|
+<%= link_to 'Back', notes_path %>
+
+</div>

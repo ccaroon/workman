@@ -1,0 +1,13 @@
+<table class="list" width="100%">
+    <% for note in notes %>
+        <tr class="<%= cycle('row_even','row_odd') %>">
+            <td>
+                <%= note.is_encrypted ?
+                  image_tag("themes/default/lock_on.png", {:border=>0}) :
+                  image_tag("themes/default/lock_off.png", {:border=>0})
+                   %>
+                <%= link_to note.title, :controller => 'notes', :action => 'show', :id => note%>
+            </td>
+        </tr>
+    <% end %>
+</table>

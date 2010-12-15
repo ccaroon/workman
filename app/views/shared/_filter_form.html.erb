@@ -1,0 +1,19 @@
+<!-- $Id: _filter_form.html.erb 1391 2009-01-12 16:22:22Z ccaroon $ -->
+<div align="center">
+    <form name="filter" action="<%= url_for :controller => controller %>" method="get">
+        Filter: <input type="text" name="filter_text" value="<%= params[:filter_text] %>">
+        <input type="button" value="Clear" onClick="document.filter.filter_text.value=null;submit();">
+    </form>
+
+    <script language="javascript">
+        Event.observe(document, 'keypress',
+            function(e)
+            {
+                if(e.which == 47) // forward slash
+                {
+                    document.filter.filter_text.focus()
+                }
+            }
+        );
+    </script>
+</div>

@@ -1,0 +1,25 @@
+<div class="header">
+    <b>User Stories</b>
+</div>
+<p>
+<% @user_stories.each do |cat,stories|%>
+    <% cat_id = cat.gsub(/\s/, '_')%>
+    <div class="header" style="padding-left:2px;margin-bottom:5px">
+        <a style="color:white" href=javascript:<%= visual_effect(:toggle_blind, "#{cat_id}_stories", {:duration => 0.0})%>><%= cat %> (<%= stories.length %>)</a>
+    </div>
+    <div id="<%= cat_id %>_stories" style="display:none">
+      <% stories.each do |s|%>
+          <div class="background-color: <%= cycle('row_even','row_odd')%>">
+          <%= link_to s.title, {:controller => 'user_stories', :action => 'show', :id => s.id}, :style => "color: black" %> (<%=s.estimate%> hours)
+               <%if (!s.jira_ticket.nil? && !s.jira_ticket.empty?)%>
+                   --
+                   <a href="http://jira.mcclatchyinteractive.com/browse/<%=s.jira_ticket%>">[<%= s.jira_ticket%>]</a>
+               <% end %>
+          </div>
+      <% end %>
+    </div>
+<% end %>
+<p>
+<div style="border-top:solid gray 1px">
+    <%= link_to "New", :controller => 'user_stories', :action => 'new' %>
+</div>

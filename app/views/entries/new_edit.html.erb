@@ -1,0 +1,56 @@
+<div class="header">
+    <b><%= controller.action_name.capitalize %> Entry</b>
+</div>
+
+<div style="padding-left:50px;padding-top:25px">
+
+<% form_for(@entry) do |f| %>
+
+    <div class="error_messages">
+        <%= f.error_messages %>
+    </div>
+
+    <b><%=  f.label :task_date %>:</b>
+    <%= calendariffic_input(false, 'entry_task_date', 'calendariffic/date.png',
+        'start_cal', '%Y-%m-%d', @entry.task_date, { :readonly => 'true'}, {:class => 'borderless'}) %>
+    <p>
+
+    <b><%=  f.label :ticket_num %>:</b>
+    <%= f.text_field :ticket_num %>
+    <p>
+
+    <b><%=  f.label :category %>:</b>
+    <%=  f.select("category", Entry::CATEGORIES.collect {|c| [ c, c]}) %>
+    <p>
+
+    <b><%=  f.label :goal %>:</b>
+    <%=  f.select("goal_id", Goal.uncompleted_goals_for_select(), {:prompt => 'Select Goal'} ) %>
+    <p>
+
+    <b><%=  f.label :subject %>:</b>
+    <%= f.text_field :subject, :size => 64, :id => 'entry_subject', :autocomplete => "off" %>
+    <div class="autocomplete" id="entry_subject_list" style="display:none"></div>
+    <p>
+
+    <b><%=  f.label :description %>:</b>
+    <br>
+    <%=  f.text_area :description, :rows => 25, :cols => 80, :wrap => 'physical' %>
+
+    <p><%= f.submit "Save" %></p>
+<% end %>
+
+<%= link_to 'Show', @entry %> |
+<%= link_to 'Back', entries_path %>
+
+</div>
+
+<script language="javascript">
+    var subject_list =
+    [
+    <% @recent_entries.each do |e| -%>
+        '<%= e.subject.gsub(/'/, "\\\\'") %>',
+    <% end %>
+    ];
+
+    new Autocompleter.Local('entry_subject', 'entry_subject_list', subject_list, { });
+</script>

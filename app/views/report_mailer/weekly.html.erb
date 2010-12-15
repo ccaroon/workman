@@ -1,0 +1,7 @@
+<% text = render :partial => 'reports/hours' %>
+<% text.concat(render :partial => 'reports/goals') %>
+<% text.concat(render :partial => "reports/#{@report.type}") %>
+
+<% markdown = BlueCloth.new(text) %>
+
+<%= markdown.to_html %>

@@ -1,0 +1,6 @@
+Report
+======
+<% @report.entries.each do |entry| %>
+#### <%= entry.task_date.strftime("%A") %>: <%= entry.subject %> <%= "[" + entry.ticket_num.to_s + "]" unless entry.ticket_num.to_s.empty? %> ####
+<%= entry.description %>
+<% end %>

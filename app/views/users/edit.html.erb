@@ -1,0 +1,75 @@
+<div class="header">
+    <b><%= controller.action_name.capitalize %> User</b>
+</div>
+
+<div style="padding-left:50px;padding-top:25px">
+
+<% form_for(User.user) do |f| %>
+    <div class="error_messages"><%= f.error_messages %></div>
+
+    <div class="default" style="border:solid 1px gray;font-size:large">
+        <b><%=  f.label :name %>:</b>
+        <%= f.text_field :name %>
+        <p>
+        <b><%=  f.label :email %>:</b>
+        <%= f.text_field :email %>
+    </div>
+    
+    <div class="default">
+        <h3 style="border:solid 1px gray">Style</h3><p>
+        <b><%=  f.label :main_style%>:</b>
+        <%=  f.select("style_main", User::MAIN_STYLES) %>
+        <p>
+            
+        <b><%=  f.label :calendar_style%>:</b>
+        <%=  f.select("style_calendar", User::CAL_STYLES) %>
+    </div>
+    
+    <div class="default">
+        <h3 style="border:solid 1px gray">Jira Config</h3><p>
+        <b><%=  f.label :jira_host %>:</b>
+        <%= f.text_field :jira_host %>
+        <p>
+
+        <b><%=  f.label :jira_user %>:</b>
+        <%= f.text_field :jira_username %>
+        <p>
+
+        <b><%=  f.label :jira_pass %>:</b>
+        <%= f.text_field :jira_password %>
+        <p>
+
+        <b><%=  f.label :jira_filter_id %>:</b>
+        <%= f.text_field :jira_filter_id %>
+    </div>
+
+    <div class="default">
+        <h3 style="border:solid 1px gray">Email Config</h3><p>
+
+        <b><%=  f.label :email_type%>:</b>
+        <%=  f.select("email_type", %w(sendmail smtp test)) %>
+        <p>
+
+        <b><%=  f.label :smtp_host %>:</b>
+        <%= f.text_field :smtp_host %>
+        <p>
+
+        <b><%=  f.label :smtp_user %>:</b>
+        <%= f.text_field :smtp_user%>
+        <p>
+
+        <b><%=  f.label :smtp_pass%>:</b>
+        <%= f.text_field :smtp_pass%>
+        <p>
+
+        <b><%=  f.label :smtp_auth%>:</b>
+        <%=  f.select("smtp_auth", [['None','none'],['Plain','plain'],['Login','login'],['Cram MD5','cram_md5']]) %>
+        <p>
+    </div>
+
+    <p><%= f.submit "Save" %></p>
+<% end %>
+
+<%= link_to 'Logout', :controller => 'users', :action => 'logout', :id => 'all' %>
+
+</div>

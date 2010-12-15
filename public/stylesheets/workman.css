@@ -1,0 +1,161 @@
+/* Misc */
+body { font-family:sans-serif; }
+
+a       { color:black; text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+s { color:gray; }
+
+#main_body { background-color:#EEEEEE; }
+
+.default   { background-color:#EEEEEE; }
+
+.top_menu
+{
+    color: white;
+    background-color: grey;
+}
+
+.header
+{
+    background-color: darkgrey;
+    color:white;
+    font-size:large;
+}
+.header a { color:white; }
+
+.row_even { background-color:lightgrey; }
+.row_odd  { background-color:white; }
+
+.error_messages
+{
+    background-color:#EEEEEE;
+    color:red;
+}
+
+.countdown_box
+{
+    color:grey;
+    display:inline;
+    margin-right: .2em;
+    padding: 0 .2em;
+    border:solid 1px black;
+    background-color: lightgrey;
+}
+
+#current_release_points
+{
+    color:grey;
+    display:inline;
+    margin-right: .2em;
+    padding: 0 .2em;
+    border:solid 1px black;
+    font-size:300%;
+}
+
+/* Pagination */
+.pagination { }
+.pagination a
+{
+    border: solid 1px black;
+    padding: 0 .5em;
+    text-decoration:none;
+}
+.pagination a:hover
+{
+    border: solid 1px black;
+    font-weight:bold;
+    color:black;
+    background-color:lightgrey;
+}
+.pagination a.next_page { }
+.pagination a:hover.next_page
+{
+    border: solid 1px black;
+    font-weight:normal;
+}
+.pagination a.prev_page { }
+.pagination a:hover.prev_page
+{
+    border: solid 1px black;
+    font-weight:normal;
+}
+.pagination span.current
+{
+    background-color:lightgrey;
+    font-weight:bold;
+    border: solid 1px black;
+    padding: 0 .5em;
+}
+
+/* Todos */
+.todos_list_item_desc
+{
+    color:graytext;
+    font-size:xx-small;
+    font-variant:small-caps;
+}
+.todos_list_item_desc a
+{
+    color:graytext;
+    text-decoration:underline;
+}
+
+/* Side Menu  */
+#side_menu
+{
+    border-right:thin solid gray;
+    background-color:#EEEEEE;
+}
+
+.side_menu_item
+{
+    background-color:#FFFFFF;
+    font-weight:bold;
+    border: dotted 1px black;
+}
+.side_menu_item a:link    {color:black;}
+.side_menu_item a:visited {color:black;}
+
+/* Table lists */
+.list {}
+.list td
+{
+    border-color: grey;
+    border-bottom: solid 1px;
+    border-left:   solid 1px;
+}
+
+.list th
+{
+    color:white;
+    background-color:#444444;
+}
+
+div.autocomplete {
+  margin:0px;
+  padding:0px;
+  width:250px;
+  background:#fff;
+  border:1px solid #888;
+  position:absolute;
+}
+
+div.autocomplete ul {
+  margin:0px;
+  padding:0px;
+  list-style-type:none;
+}
+
+div.autocomplete ul li.selected {
+  background-color:lightgrey;
+}
+
+div.autocomplete ul li {
+  margin:0;
+  padding:2px;
+  height:16px;
+  display:block;
+  list-style-type:none;
+  cursor:pointer;
+}

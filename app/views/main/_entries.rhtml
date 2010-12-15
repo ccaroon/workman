@@ -1,0 +1,11 @@
+<table class="list" width="100%">
+    <% for entry in @entries %>
+        <tr class="<%= cycle('row_even','row_odd') %>">
+            <td><%=h entry.task_date.strftime("%a")  %></td>
+            <td><%= entry.category %> <br> <a href="http://jira.mcclatchyinteractive.com/browse/<%=entry.ticket_num%>"><%=entry.ticket_num%></a></td>
+            <td>
+                <%= link_to entry.subject, :controller => 'entries', :action => 'show', :id => entry %>
+            </td>
+        </tr>
+    <% end %>
+</table>

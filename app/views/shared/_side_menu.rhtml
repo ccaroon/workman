@@ -1,0 +1,5 @@
+<% side_menus.each do |item| %>
+    <div class="side_menu_item">
+        <%= item[:image] %><%= link_to "New #{item[:action].to_s.capitalize.singularize}", :controller => item[:action], :action => 'new' %>
+    </div>
+<%  end %>

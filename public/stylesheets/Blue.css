@@ -1,0 +1,76 @@
+/* Misc */
+a { color:#06c; }
+
+code { background-color: #E6F2FF; }
+
+.default { background-color:#E6F2FF; }
+
+.top_menu
+{
+    color: white;
+    background-color:#003399;
+}
+
+.header { background-color: #2175bc; }
+.header a {color:white}
+
+.row_even { background-color:#E6F2FF; }
+.row_odd  { background-color:white; }
+
+.countdown_box
+{
+    border-color: #06c;
+    background-color: #E6F2FF;
+}
+
+#current_release_points
+{
+    border-color: #06c;
+    background-color: #E6F2FF;
+}
+
+#side_menu
+{
+    border-right:thin solid black;
+    background-color:#E6F2FF;
+}
+
+/* Pagination */
+.pagination a { border-color:#06c; }
+.pagination a:hover
+{
+    border-color:black;
+    color:black;
+    background-color:#E6F2FF;
+}
+
+.pagination a:hover.next_page
+{
+    border-color:black;
+}
+
+.pagination a:hover.prev_page
+{
+    border-color: black;
+}
+.pagination span.current
+{
+    background-color:#E6F2FF;
+    border-color: black;
+}
+
+/* Table lists */
+.list td
+{
+    border-color:#C5DBF7;
+}
+
+.list th
+{
+    color:white;
+    background-color:#444444;
+}
+
+div.autocomplete ul li.selected {
+  background-color:#E6F2FF;
+}

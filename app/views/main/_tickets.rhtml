@@ -1,0 +1,34 @@
+<table class="list" width="100%">
+    <% for ticket in @tickets.sort {|a,b| a.key <=> b.key} %>
+        <%tr_class = cycle('row_even','row_odd') %>
+        <tr class="<%= tr_class %>">
+            <td align="center">
+                <a href="/entries/new_from_jira_ticket/index.html?ticket_num=<%= ticket.key %>&subject=<%=h ticket.summary %>&status=<%=h ticket.status %>"><img title="Entry from Ticket" src="/images/themes/default/add_entry.png" border="0"></a>
+            </td>
+            <td>
+                <a href="<%=ticket.link%>"><%= ticket.key %> - <%= ticket.summary %></a>
+                (<font color="<%=ticket.color%>"><%= ticket.status %></font>, <%= ticket.type %>, <%= ticket.points %>)
+                <%  unless (ticket.sub_tickets.empty?) %>
+                     (<a href=javascript:<%= visual_effect(:toggle_blind, "sub_tickets-#{ticket.key}", {:duration => 0.0})%>><%=h ticket.sub_tickets.count%> Sub-tasks</a>)
+                 <% end %>
+            </td>
+        </tr>
+        <tr id="sub_tickets-<%=ticket.key%>" style="display:none" class="<%= tr_class %>">
+            <td>&nbsp;</td>
+            <td colspan="1">
+                <table border="0">
+                    <% for sub in ticket.sub_tickets.sort {|a,b| a.key <=> b.key} %>
+                        <tr>
+                            <td align="center">
+                                <a href="/entries/new_from_jira_ticket/index.html?ticket_num=<%= sub.key %>&subject=<%= sub.summary %>&status=<%=h sub.status %>"><img title="Entry from Ticket" src="/images/themes/default/add_entry.png" border="0"></a>
+                            </td>
+                            <td>
+                                <a href="<%=sub.link%>"><%= sub.key %> - <%= sub.summary %></a> (<font color="<%=sub.color%>"><%= sub.status %></font>)
+                            </td>
+                        </tr>
+                    <% end %>
+                </table>
+            </td>
+        </tr>
+    <% end %>
+</table>

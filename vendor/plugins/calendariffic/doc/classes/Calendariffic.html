@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Calendariffic</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Calendariffic</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/calendariffic_rb.html">
+                lib/calendariffic.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000001">calendariffic_input</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="Calendariffic.src/M000001.html" target="Code" class="method-signature"
+            onclick="popupCode('Calendariffic.src/M000001.html');return false;">
+          <span class="method-name">calendariffic_input</span><span class="method-args">(calendar_is_before_text, text_name, image_source, image_name, date_format, text_value, text_attributes={}, image_attributes={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <h3>Creates a DHTML pop-up calendar icon and an associated text-box to display the selected date.</h3>
+<p>
+<b><em>calendar_is_before_text</em></b>: boolean to determine whether the
+calendar icon is placed before or after the text-box
+</p>
+<pre>
+  e.g. true will produce &lt;img ... /&gt;&lt;input type=&quot;text&quot; ... /&gt; whereas false will generate &lt;input type=&quot;text&quot; ... /&gt;&lt;img ... /&gt;
+</pre>
+<p>
+<b><em>text_name</em></b>: specifies the name and id attributes of the
+text-box. The user MUST specify this value and it MUST be different from
+the value specified in image_name.
+</p>
+<p>
+<b><em>image_source</em></b>: relative path specifying the location of an
+icon to represent the pop-up calendar.
+</p>
+<pre>
+  Several calendar icons are located in public/images/calendariffic
+</pre>
+<p>
+<b><em>image_name</em></b>: the name and id you want associated with your
+calendar icon. The user MUST specify this value and it MUST be different
+from the value specified in text_name.
+</p>
+<p>
+<b><em>date_format</em></b>: the format in which the date will appear
+within the text_box. See table below for valid abbreviations for date.
+</p>
+<pre>
+  a date_format of nil will default to mm/dd/yy.
+</pre>
+<p>
+<b><em>text_value</em></b>: the initial value you want to show up within
+the text box (e.g. &#8216;07/04/2007&#8217;)
+</p>
+<pre>
+  if the user passes the string 'today' the text_value will initially display today's date in whichever format is specified by the date_format parameter.
+  the 'today' string is case-insensitive.
+</pre>
+<p>
+<b><em>text_attributes</em></b>: any other attributes that can be placed
+into an &lt;input type=&quot;text&quot; /&gt; HTML element can be placed
+here within a Hash. e.g. {:class =&gt; &#8216;myfavoriteclass&#8217;}
+</p>
+<p>
+<b><em>image_attributes</em></b>: any other attributes that can be placed
+into an &lt;img src=&quot;&quot; &#8230; /&gt; HTML element can be placed
+here within a Hash. e.g. {:alt =&gt; &#8216;cal&#8217;}
+</p>
+<p>
+<b>Date Formatting Abbreviations:</b>
+</p>
+<pre>
+  %a  abbreviated weekday name
+  %A  full weekday name
+  %b  abbreviated month name
+  %B  full month name
+  %C  century number
+  %d  the day of the month ( 00 .. 31 )
+  %e  the day of the month ( 0 .. 31 )
+  %j  day of the year ( 000 .. 366 )
+  %m  month ( 01 .. 12 )
+  %n  a newline character
+  %s  number of seconds since Epoch (since Jan 01 1970 00:00:00 UTC)
+  %t  a tab character
+  %U, %W, %V  the week number
+  %u  the day of the week ( 1 .. 7, 1 = MON )
+  %w  the day of the week ( 0 .. 6, 0 = SUN )
+  %y  year without the century ( 00 .. 99 )
+  %Y  year including the century ( ex. 1979 )
+  %%  a literal % character
+</pre>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

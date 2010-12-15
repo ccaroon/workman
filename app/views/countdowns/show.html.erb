@@ -1,0 +1,15 @@
+<div class="header">
+    <b>Countdown</b> - <%= @countdown.to_html %>
+</div>
+
+<div>
+    <p>
+        <b>Title:</b> <%=h @countdown.title %><br>
+        <b>Target date:</b> <%=h @countdown.target_date.strftime("%b %d, %Y %I:%M:%S %p") %><br>
+        <b>Display units:</b> <%=h @countdown.units.capitalize %><br>
+        <b>Display on homepage:</b> <%=h @countdown.on_homepage ? 'Yes' : 'No' %><br>
+    </p>
+</div>
+
+<%= link_to 'Edit', edit_countdown_path(@countdown) %> |
+<%= link_to 'Back', countdowns_path %>

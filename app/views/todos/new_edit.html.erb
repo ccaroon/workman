@@ -1,0 +1,44 @@
+<div class="header">
+    <b><%= controller.action_name.capitalize %> Todo</b>
+</div>
+
+<div style="padding-left:50px;padding-top:25px">
+
+<% form_for(@todo) do |f| %>
+    <div class="error_messages"><%= f.error_messages %></div>
+
+    <b><%=  f.label :completed %>:</b>
+    <%= f.check_box :completed %>
+    <p>
+
+    <b><%=  f.label :priority %>:</b>
+    <%= f.select(:priority, Todo::PRIORITIES.collect {|p| [p, p] }) %>
+    <p>
+
+    <b><%=  f.label :due_date %>:</b>
+    <%= calendariffic_input(false, 'todo_due_on', 'calendariffic/date.png',
+        'start_cal', '%Y-%m-%d', @todo.due_on, {:readonly => true, :size => 10}, {:class => 'borderless'}) %>
+    <img src="/images/themes/unknown/grey_x.gif" title="Clear Due Date" onClick="$('todo_due_on').value = '';">
+    <p>
+
+    <b><%=  f.label :title %>:</b>
+    <%=  f.text_field :title, :size => 25 %>
+    <p>
+
+    <b><%=  f.label :description %>:</b><br>
+    <%=  f.text_area :description, :rows => 5, :cols => 35, :wrap => 'physical' %>
+    <p>
+
+    <b><%=  f.label :list %>:</b>
+    <% list_select_items = List.find(:all).collect {|l| [l.name, l.id] } %>
+    <% list_select_items.unshift(["--None--", nil]) %>
+    <%= f.select(:list_id, list_select_items) %>
+    <p>
+
+    <p><%= f.submit "Save" %></p>
+<% end %>
+
+<%= link_to 'Show', @todo %> |
+<%= link_to 'Back', todos_path %>
+
+</div>

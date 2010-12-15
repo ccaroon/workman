@@ -1,0 +1,21 @@
+<div class="header">
+    <b>Obstacle</b>
+</div>
+
+<div style="font-size:large;font-weight:bold">
+    <% if (@obstacle.is_overcome) %>
+        "<%=  @obstacle.title %>" no longer stands in the way of progress for '<%=  @obstacle.goal.name %>'.
+        <p>
+        This obstacle has been overcome.
+    <% else %>
+        Can't complete '<%=  @obstacle.goal.name %>' because "<%=  @obstacle.title %>".
+        <p>
+        This obstacle has NOT been overcome.
+    <%  end %>
+</div>
+
+<div style="padding:15px">
+    <%= @obstacle.description %>
+</div>
+
+<%= link_to 'Edit', edit_obstacle_path(@obstacle) %>

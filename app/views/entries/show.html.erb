@@ -1,0 +1,20 @@
+<div class="header">
+    <b>Entry</b> - <%= display_entry :entry_date %>
+</div>
+
+<div style="font-size:large;font-weight:bold">
+    <%= @entry.subject %>
+</div>
+<p>
+<div>
+    <b>Category:</b> <%= @entry.category %>
+    <br>
+    <b>Ticket: </b><%= (@entry.ticket_num.nil? || @entry.ticket_num.empty?) ? '' : "#{display_entry :ticket}" %>
+    <br>
+    <b>Goal: </b> <%= @entry.goal.nil? ? '' : @entry.goal.name %>
+    <br>
+    <b>Task Date: </b> <%= display_entry :task_date %>
+    <p><%= display_entry :description %></p>
+</div>
+
+<%= link_to 'Edit', edit_entry_path(@entry) %>

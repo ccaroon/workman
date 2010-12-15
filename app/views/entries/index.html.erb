@@ -1,0 +1,29 @@
+<div class="header">
+    <b>Entries</b>
+</div>
+<p>
+<%= render :partial => 'shared/filter_form', :locals => {:controller => 'entries'} %>
+<div align="center">
+    <%= will_paginate @entries %>
+</div>
+<table class="list" width="100%">
+    <tr>
+        <th>Task Date</th>
+        <th>Category</th>
+        <th>Ticket</th>
+        <th width="55%">Subject</th>
+        <th>Actions</th>
+    </tr>
+    <% @entries.each do |@entry| %>
+    <tr class="<%= cycle('row_even','row_odd') %>">
+        <td><%= display_entry :task_date %></td>
+        <td><%= display_entry :category %></td>
+        <td><%= display_entry :ticket %></td>
+        <td><%= link_to (display_entry :subject), @entry%></td>
+        <td>
+            <%= link_to image_tag('themes/default/show.png', {:border => 0}), @entry %>
+            <%= link_to image_tag('themes/default/edit.png', {:border => 0}), edit_entry_path(@entry) %>
+            <%= link_to image_tag('themes/default/delete.png', {:border => 0}), @entry, :confirm => "Delete Entry?", :method => :delete %></td>
+    </tr>
+    <% end  %>
+</table>

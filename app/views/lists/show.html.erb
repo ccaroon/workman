@@ -1,0 +1,30 @@
+<div class="header">
+    <b>List</b>
+</div>
+<p>
+<div style="font-size:large;font-weight:bold">
+    <%= display_list :name %>
+</div>
+<p>
+<table width="50%">
+<% @list.todos.each do |@todo| %>
+    <% image = @todo.completed ? "checkbox_on.gif" : "checkbox_off.gif" %>
+    <tr class="<%= cycle('row_even','row_odd') %>">
+        <td width="5%" align="center"><%= link_to image_tag("themes/default/#{image}", {:title=>'Mark Complete', :border=>0}), :controller => 'todos', :action => 'mark_complete', :id => @todo.id %></td>
+        <td>
+          <% data = "Priority: #{@todo.priority} Due: #{display_todo :due_date} Completed: #{display_todo :completed_date}" %>
+          <abbr style='border:none' title='<%= data %>'><%= link_to (display_todo :title), edit_todo_path(@todo) %></abbr>
+          <span class="todos_list_item_desc"><%= display_todo :description, {:flatten => true} %></span>
+        </td>
+        <td width="5%">
+            <%= link_to image_tag("themes/default/delete.png", {:border => 0}), @todo, :confirm => "'#{@todo.title}'\n\nDelete this todo?", :method => :delete %>
+        </td>
+<% end %>
+    </tr>
+</table>
+
+<p>
+
+<%= link_to 'Edit', edit_list_path(@list) %>
+|
+<%= link_to 'New Item', new_todo_path(:list_id => @list.id) %>

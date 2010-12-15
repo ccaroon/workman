@@ -1,0 +1,20 @@
+<div class="header">
+    <b><%= controller.action_name.capitalize %> List</b>
+</div>
+
+<div style="padding-left:50px;padding-top:25px">
+
+<% form_for(@list) do |f| %>
+    <%= f.error_messages %>
+
+    <b><%=  f.label :name %>:</b>
+    <%= f.text_field :name, :size => 25 %>
+    <p>
+
+    <p><%= f.submit "Save" %></p>
+<% end %>
+
+<%= link_to 'Show', @list %> |
+<%= link_to 'Back', lists_path %>
+
+</div>

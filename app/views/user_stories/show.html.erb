@@ -1,0 +1,62 @@
+<div class="header">
+    <b>User Story</b>
+</div>
+
+<p>
+
+<table style="font-size:larger" border="0" width="50%">
+    <tr>
+        <th class="header"><%= @user_story.title %></th>
+    </tr>
+    <tr>
+        <td class="row_even"><b>As a</b> <%= @user_story.role%></td>
+    </tr>
+    <tr>
+        <td class="row_even"><b>I want</b> <%=@user_story.feature%></td>
+    </tr>
+    <tr>
+        <td class="row_even"><b>So that</b> <%= @user_story.benefit%></td>
+    </tr>
+</table>
+
+<p>
+
+<% @user_story.scenarios.each do |scene| %>
+<table border="0" width="50%">
+    <tr>
+        <th class="header" colspan="2">
+            Scenario: <%=h scene.title %> -
+<% #TODO: For some reason this link is not generated correctly %>
+<%= link_to image_tag("themes/default/delete.png", {:border => 0, :align => 'absmiddle', :title => 'Delete - CURRENTLY DOES NOT WORK'}), :controller => 'scenarios', :action => 'destroy', :id => scene.id %>
+        </th>
+    </tr>
+    <tr>
+        <th width="5%">Given</th>
+        <td><%=h scene.given %></td>
+    </tr>
+    <tr>
+        <th width="5%">When</th>
+        <td><%=h scene.when %></td>
+    </tr>
+    <tr>
+        <th width="5%">Then</th>
+        <td><%=h scene.then %></td>
+    </tr>
+</table>
+<%end%>
+
+<p>
+
+<div id="new_scenario" style="display:none">
+    <%= render :partial => 'new_scenario', :locals => {:story => @user_story} %>
+</div>
+<p>
+<div style="background-color: lightgray">
+    <%= link_to image_tag("themes/default/arrow_left.png", {:border=>0,:align=>'absmiddle'}), :controller => 'user_stories' %>
+    <%= link_to image_tag("themes/default/edit.png", {:border => 0, :align=>'absmiddle'}), :controller => 'user_stories', :action => 'edit', :id => @user_story %>
+    <%if (!@user_story.jira_ticket.nil? && !@user_story.jira_ticket.empty?)%>
+        <a href="http://jira.mcclatchyinteractive.com/browse/<%=@user_story.jira_ticket%>">[<%= @user_story.jira_ticket%>]</a>
+    <%end%>
+    <b>|</b>
+    <a href=javascript:<%= visual_effect(:toggle_blind, 'new_scenario', {:duration => 0.0})%>><%= image_tag("themes/default/add.png", {:border => 0, :align => 'absmiddle'}) %></a>
+</div>
