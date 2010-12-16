@@ -1,2 +1,3 @@
 log/*.log
 log/*.pid
+coverage
