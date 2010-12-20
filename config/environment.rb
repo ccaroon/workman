@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -39,7 +39,7 @@ Rails::Initializer.run do |config|
   # (create the session table with 'rake db:sessions:create')
   # config.action_controller.session_store = :active_record_store
   config.action_controller.session = {
-    :session_key => '_workman_session',
+    :key => '_workman_session',
     :secret      => 'f72c63ebf34955cbff50002898e0dfd88b2059de987207493f6a4ca19921bcf23e02a0a98fb74180c559ac1f012b4dd932
 4b939d8d7888d0496c36e0f50fbf68'
   }
