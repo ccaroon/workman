@@ -1,9 +1,0 @@
-<table class="list" width="100%">
-    <% for goal in @goals%>
-        <tr class="<%= cycle('row_even','row_odd') %>">
-            <td align="center"><%=h goal.priority %></td>
-            <td><%= link_to goal.name, :controller => 'goals', :action => 'show', :id => goal %> </td>
-            <td align="center"><%= goal.percent_complete().to_s + '%' %></td>
-        </tr>
-    <% end %>
-</table>
