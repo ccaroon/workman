@@ -1,0 +1,23 @@
+<% @user_stories.each do |cat,stories|%>
+    <% cat_id = cat.gsub(/\s/, '_')%>
+    <div class="streamlined_header" style="border-bottom: solid 1px #FFFFFF">
+        <h2>
+            <a style="color: white" href=javascript:<%= visual_effect(:toggle_blind, "#{cat_id}_stories", {:duration => 0.0})%>><%= cat %> (<%= stories.length %>)</a>
+        </h2>
+    </div>
+    <div id="<%= cat_id %>_stories" style="display:none">
+      <% stories.each do |s|%>
+          <div style="background-color: <%= cycle('E6F2FF','white')%>">
+          <a style="color: black" href="/user_stories/view/<%= s.id %>"><%= s.title %></a> (<%=s.estimate%> hours)
+               <%if (!s.jira_ticket.nil? && !s.jira_ticket.empty?)%>
+                   --
+                   <a href="http://jira.mcclatchyinteractive.com/browse/<%=s.jira_ticket%>">[<%= s.jira_ticket%>]</a>
+               <% end %>
+          </div>
+      <% end %>
+    </div>
+<% end %>
+<p>
+<div style="background-color: lightgrey;border: solid 1px lightgrey">
+    <a href="/user_stories/new"><img src="/images/streamlined/add_16.png" border="0"></a>
+</div>

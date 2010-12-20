@@ -1,0 +1,10 @@
+<table>
+    <% for note in notes %>
+        <tr class="<%= cycle('even','odd') %>">
+            <td>
+                <%= note.is_encrypted ? "<img src='/images/themes/default/lock_on.png' border='0'>" : "<img src='/images/themes/default/lock_off.png' border='0'>" %>
+                <%= link_to note.title, :controller => 'notes', :action => 'show', :id => note%>
+            </td>
+        </tr>
+    <% end %>
+</table>

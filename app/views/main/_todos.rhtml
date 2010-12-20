@@ -1,0 +1,16 @@
+<table>
+    <% for todo in @todos%>
+        <tr class="<%= cycle('even','odd') %>">
+            <td width="5%" align="center">
+                <% image = 'circle_red.png'    if (todo.priority == 1) %>
+                <% image = 'circle_orange.png' if (todo.priority == 2) %>
+                <% image = 'circle_yellow.png' if (todo.priority == 3) %>
+                <% image = 'circle_blue.png'   if (todo.priority >= 4) %>
+                <a href="/todos/mark_complete/<%= todo.id%>"><img src='/images/themes/default/<%= image %>' title='Mark Complete' border='0'></a>
+            </td>
+            <td>
+                <%= todo.completed ? "<s>#{todo.title}</s>" : "<b>#{todo.title}</b>" %>
+            </td>
+        </tr>
+    <% end %>
+</table>

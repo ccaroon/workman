@@ -1,0 +1,26 @@
+################################################################################
+# $Id: $
+################################################################################
+development:
+  adapter: mysql
+  database: workman_devel
+  username: ccaroon
+  password: nu$@11
+  host: localhost
+  socket: /var/run/mysqld/mysqld.sock
+
+test:
+  adapter: mysql
+  database: workman_test
+  username: ccaroon
+  password: nu$@11
+  host: localhost
+  socket: /var/run/mysqld/mysqld.sock
+
+production:
+  adapter: mysql
+  database: workman_prod
+  username: ccaroon
+  password: nu$@11
+  host: localhost
+  socket: /var/run/mysqld/mysqld.sock

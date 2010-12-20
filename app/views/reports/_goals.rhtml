@@ -1,0 +1,14 @@
+Goals
+=====
+#### Completed Goals ####
+<% @comp_goals.each do |g|-%>
+* <%=h g.name %>
+<%end-%>
+
+#### Incomplete Goals ####
+<% @incomp_goals.each do |g|-%>
+* <%=h g.name %> (<%=h g.percent_complete%>%)
+<% g.outstanding_obstacles.each do |o| -%>
+    * <%= o.title %>
+<% end -%>
+<%end-%>

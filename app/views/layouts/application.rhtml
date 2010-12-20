@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Work Manager</title>
+  <%= stylesheet_link_tag 'scaffold' %>
+</head>
+<body>
+    <h1>Work Manager - <%= @bread_crumb %> </h1>
+    <p class="menu">
+        <%= link_to "Home",      :controller => "main", :action => "home" %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= link_to "Entries",   :controller => "entry", :action => "list" %>  |
+        <%= link_to "New Entry", :controller => "entry", :action => "new" %>   |
+        <%= link_to "Search Entries",    :controller => "entry", :action => "search" %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= link_to "Goals",     :controller => "goal",  :action => "list" %>  |
+        <%= link_to "New Goal",  :controller => "goal",  :action => "new" %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= link_to "Todos",     :controller => "todo",  :action => "list" %>  |
+        <%= link_to "New Todo",  :controller => "todo",  :action => "new" %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= link_to "Notes",     :controller => "notes",  :action => "list" %>  |
+        <%= link_to "New Note",  :controller => "notes",  :action => "new" %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= link_to "Report by Day", :controller => "report",  :action => "by_day" %>  |
+        <%= link_to "Report by Category",  :controller => "report",  :action => "by_category" %>
+    </p>
+    <p style="color: green"><%= flash[:notice] %></p>
+
+    <%= yield  %>
+    
+</body>
+</html>

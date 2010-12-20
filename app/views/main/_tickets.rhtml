@@ -1,0 +1,37 @@
+<table>
+    <% for ticket in @tickets.sort {|a,b| a.key <=> b.key} %>
+        
+        <%tr_class = cycle('even','odd') %>
+        <tr class="<%= tr_class %>">
+            <td>
+                <a href="/entries/new_from_jira_ticket?ticket_num=<%= ticket.key %>&subject=<%=h ticket.summary %>"><img title="Entry from Ticket" src="/images/themes/default/comment_add.png" border="0"></a>
+                <%unless (ticket.sub_tickets.empty?)%>
+                    &nbsp;
+                    <a href=javascript:<%= visual_effect(:toggle_blind, "sub_tickets-#{ticket.key}", {:duration => 0.0})%>><img title="Entry from Ticket" src="/images/themes/default/comment_add.png" border="0"></a>
+                <%end%>
+            </td>
+            <td>
+                <a href="<%=ticket.link%>"><%= ticket.key %> - <%= ticket.summary %></a> (<font color="<%=ticket.color%>"><%= ticket.status %></font>, <%= ticket.type%>)
+            </td>
+        </tr>
+        <tr id="sub_tickets-<%=ticket.key%>" style="display:none" class="<%= tr_class %>">
+          <td>&nbsp;</td>
+          <td>
+            <% if !ticket.sub_tickets.empty? %>
+                <table border="0">
+                    <% for sub in ticket.sub_tickets.sort {|a,b| a.key <=> b.key} %>
+                        <tr>
+                            <td>
+                                <a href="/entries/new_from_jira_ticket?ticket_num=<%= sub.key %>&subject=<%= sub.summary %>"><img title="Entry from Ticket" src="/images/themes/default/comment_add.png" border="0"></a>
+                            </td>
+                            <td>
+                                <a href="<%=sub.link%>"><%= sub.key %> - <%= sub.summary %></a> (<font color="<%=sub.color%>"><%= sub.status %></font>)
+                            </td>
+                        </tr>
+                    <% end %>
+                </table>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+</table>

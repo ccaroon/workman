@@ -1,0 +1,30 @@
+<%= render :partial => 'hours'%>
+
+<%= render :partial => 'goals'%>
+
+Report
+======
+<% @entries_map.keys.sort.each do |cat| -%>
+<% entries = @entries_map[cat] -%>
+<%=h cat %>
+-----------
+<% entries.each do |e|-%>
+#### <%=h e.task_date %> -- <%=h e.subject %> ####
+<% unless e.ticket_num.empty? -%>
+Ticket: [<%=h e.ticket_num.to_s%>](http://jira.mcclatchyinteractive.com/browse/<%=h e.ticket_num.to_s%>)
+
+<%end-%>
+<% unless e.goal.nil? -%>
+Goal: <%=h e.goal.name %> <%=h '[' + e.goal.percent_complete.to_s + '%]'%>
+
+<%end-%>
+<%=h e.description.rstrip %>
+
+<%end-%>
+<% end -%>
+
+---------------------------------------------
+[Email Report](http://mail.google.com/a/caroon.org/?view=cm&tf=0&to=wkreiling@mcclatchyinteractive.com,sschnorr@mcclatchyinteractive.com&cc=developers@mcclatchyinteractive.com&su=[WR] <%=(@range[1]-1).strftime("%Y.%m.%d")%>&body=HERE)
+
+[Old](mailto:wkreiling@mcclatchyinteractive.com,sschnorr@mcclatchyinteractive.com?cc=developers@mcclatchyinteractive.com&subject=[WR] <%=(@range[1]-1).strftime("%Y.%m.%d")%>&body=HERE)
+

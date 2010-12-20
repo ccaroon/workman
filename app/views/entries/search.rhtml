@@ -1,0 +1,31 @@
+
+<div align="center">
+    <form name="entry_search_form" action="/entry/list" method="post">
+        <table border="1">
+            <tr>
+                <td>Subject:</td>
+                <td><input type="text" name="subject" size="25"></td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td><input type="text" name="description" size="25"></td>
+            </tr>
+            <tr>
+                <td>Category:</td>
+                <td>
+                    <select name="category">
+                        <option value="">--Choose--</option>
+                        <% Entry::CATEGORIES.each do |cat|%>
+                            <option value="<%= cat %>"><%=h cat%></option>
+                        <%end%>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Search">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

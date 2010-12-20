@@ -1,0 +1,26 @@
+Story: <%= @story.title %><br>
+&nbsp;&nbsp;As a <%= @story.role%><br>
+&nbsp;&nbsp;I want <%=@story.feature%><br>
+&nbsp;&nbsp;So that <%= @story.benefit%><br>
+<% @story.scenarios.each do |scene| %>
+<p>
+&nbsp;&nbsp;Scenario: <%= scene.title %><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Given <%= scene.given.gsub(/\n/, '<br>&nbsp;&nbsp;&nbsp;&nbsp;') %><br>
+&nbsp;&nbsp;&nbsp;&nbsp;When <%= scene.when %><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Then <%= scene.then.gsub(/\n/, '<br>&nbsp;&nbsp;&nbsp;&nbsp;') %><br>
+<%end%>
+<p>
+<div id="new_scenario" style="display:none">
+    <%= render :partial => 'new_scenario', :locals => {:story => @story} %>
+</div>
+<p>
+<div style="background-color: lightgrey">
+    <a href="/user_stories/edit/<%=@story.id%>"><img src="/images/streamlined/edit_16.png" border="0" align="absmiddle"></a>
+    <a href="/user_stories/show/<%=@story.id%>"><img src="/images/streamlined/search_16.png" border="0" align="absmiddle"></a>
+    <%if (!@story.jira_ticket.nil? && !@story.jira_ticket.empty?)%>
+        <a href="http://jira.mcclatchyinteractive.com/browse/<%=@story.jira_ticket%>">[<%= @story.jira_ticket%>]</a>
+    <%end%>
+    <b>|</b>
+    <a href=javascript:<%= visual_effect(:toggle_blind, 'new_scenario', {:duration => 0.0})%>><img src="/images/streamlined/add_16.png" border="0" align="absmiddle"></a>
+    <a href="/scenarios?user_story=<%=@story.id%>"><img src="/images/streamlined/search_16.png" border="0" align="absmiddle"></a>
+</div>

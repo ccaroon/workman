@@ -1,0 +1,62 @@
+<div align="center">
+    <table width="100%">
+        <tr>
+            <td valign="top" colspan="2">
+                <div class="streamlined_header">
+                    <h2>
+                        <a href="http://jira.mcclatchyinteractive.com/secure/IssueNavigator.jspa?mode=hide&requestId=10012"><font color="white">Tickets</font></a>
+                    </h2>
+                </div>
+                <div id="streamlined_list"><%= render :partial => 'tickets' %></div>
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color: #E6F2FF" valign="top" width="55%">
+                <table width="100%">
+                    <tr>
+                        <td valign="top">
+                            <div class="streamlined_header">
+                                <h2>
+                                    <a href="/reports/by_day"><font color="white">This Week's Entries</font></a>
+                                </h2>
+                            </div>
+                            <div id="streamlined_list"><%= render :partial => 'entries' %></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td valign="top">
+                <table width="100%">
+                    <tr>
+                        <td valign="top">
+                            <div class="streamlined_header">
+                                <h2><a href="/todos"><font color="white">Todos</font></a></h2>
+                            </div>
+                            <div id="streamlined_list"><%= render :partial => 'todos' %></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="streamlined_header">
+                                <h2><a href="/goals"><font color="white">Goals</font></a></h2>
+                            </div>
+                            <div id="streamlined_list"><%= render :partial => 'goals' %></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="streamlined_header"><h2>Recent Notes</h2></div>
+                            <div id="streamlined_list"><%= render :partial => 'notes', :object => @recent_notes %></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="streamlined_header"><h2>Favorite Notes</h2></div>
+                            <div id="streamlined_list"><%= render :partial => 'notes', :object => @favorite_notes %></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

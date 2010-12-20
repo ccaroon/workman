@@ -1,0 +1,23 @@
+<form method="post" action="/scenarios/create" onsubmit="Streamlined.Form.submit(this); return false;">
+    <input type="hidden" name="scenario[user_story_id]" value="<%= story.id %>">
+    <table>
+        <tr>
+            <td align="right"><b>Scenario </b></td>
+            <td><input type="text" name="scenario[title]" size="80"></td>
+        </tr>
+        <tr>
+            <td align="right"><b>Given </b></td>
+            <td><textarea cols="80" name="scenario[given]" rows="5" wrap="physical"></textarea></td>
+        </tr>
+        <tr>
+            <td align="right"><b>When</b></td>
+            <td><input type="text" name="scenario[when]" size="80"></td>
+        </tr>
+        <tr>
+            <td align="right"><b>Then </b></td>
+            <td><textarea cols="80" name="scenario[then]" rows="5" wrap="physical"></textarea></td>
+        </tr>
+    </table>
+    <p>
+    <div align="center"><input type="submit" value="Add Scenario"></div>
+</form>

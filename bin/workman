@@ -1,0 +1,45 @@
+#!/bin/sh
+###############################################################################
+DIR=`dirname $0`
+APP_DIR=$DIR/..
+###############################################################################
+case $1 in
+    start) 
+        cd $APP_DIR
+        mongrel_rails start -e production -p 5000 -d
+    ;;
+    stop) 
+        cd $APP_DIR
+        mongrel_rails stop
+    ;;
+    restart) 
+        cd $APP_DIR
+        mongrel_rails stop
+        sleep 1
+        mongrel_rails start -e production -p 5000 -d
+    ;;
+    log) 
+        cd $APP_DIR/log
+        tail -f development.log
+    ;;
+    backup) 
+        mysqldump -uccaroon -p'nu$@11' workman_prod > ~/backups/workman_prod_dump-`date +%F`.sql
+    ;;
+    prod_db) 
+        mysql -hlocalhost -uccaroon workman_prod -p'nu$@11'
+    ;;
+    prod_db_restore) 
+        mysql -hlocalhost -uccaroon workman_prod -p'nu$@11' < $2
+    ;;
+    test_db) 
+        mysql -hlocalhost -uccaroon workman_test -p'nu$@11'
+    ;;
+    devel_db) 
+        mysql -hlocalhost -uccaroon workman_devel -p'nu$@11'
+    ;;
+    status) 
+        ps -fp `cat $APP_DIR/log/mongrel.pid`
+    ;;
+    *) echo "workman: Unknown command [$1]";
+esac
+###############################################################################
