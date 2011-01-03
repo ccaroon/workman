@@ -7,7 +7,7 @@ development:
   username: <%= ENV['WORKMAN_DDB_USERNAME'] %>
   password: <%= ENV['WORKMAN_DDB_PASSWORD'] %>
   host:     <%= ENV['WORKMAN_DDB_HOST']     || 'localhost' %>
-  socket: /var/run/mysqld/mysqld.sock
+#  socket: /var/run/mysqld/mysqld.sock
 
 test:
   adapter:  <%= ENV['WORKMAN_TDB_ADAPTER']  || 'mysql' %>
@@ -15,7 +15,7 @@ test:
   username: <%= ENV['WORKMAN_TDB_USERNAME'] %>
   password: <%= ENV['WORKMAN_TDB_PASSWORD'] %>
   host:     <%= ENV['WORKMAN_TDB_HOST']     || 'localhost' %>
-  socket: /var/run/mysqld/mysqld.sock
+#  socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter:  <%= ENV['WORKMAN_PDB_ADAPTER']  || 'mysql' %>
@@ -23,4 +23,4 @@ production:
   username: <%= ENV['WORKMAN_PDB_USERNAME'] %>
   password: <%= ENV['WORKMAN_PDB_PASSWORD'] %>
   host:     <%= ENV['WORKMAN_PDB_HOST']     || 'localhost' %>
-  socket: /var/run/mysqld/mysqld.sock
+#  socket: /var/run/mysqld/mysqld.sock

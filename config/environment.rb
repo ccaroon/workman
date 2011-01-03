@@ -11,10 +11,9 @@ RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  config.gem 'mislav-will_paginate', 
-    :version => '~> 2.2.3',
-    :lib => 'will_paginate',
-    :source => 'http://gems.github.com'
+  config.gem 'will_paginate', 
+    :version => '> 2.2.3',
+    :lib => 'will_paginate'
 
   config.gem 'BlueCloth',
     :version => '~> 1.0.0',
