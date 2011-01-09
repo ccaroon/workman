@@ -55,7 +55,7 @@
     <%= link_to image_tag("themes/default/arrow_left.png", {:border=>0,:align=>'absmiddle'}), :controller => 'user_stories' %>
     <%= link_to image_tag("themes/default/edit.png", {:border => 0, :align=>'absmiddle'}), :controller => 'user_stories', :action => 'edit', :id => @user_story %>
     <%if (!@user_story.jira_ticket.nil? && !@user_story.jira_ticket.empty?)%>
-        <a href="http://jira.mcclatchyinteractive.com/browse/<%=@user_story.jira_ticket%>">[<%= @user_story.jira_ticket%>]</a>
+        <a href="http://jira.mcclatchyinteractive.com/browse/<%=@user_story.jira_ticket%>" target="_blank">[<%= @user_story.jira_ticket%>]</a>
     <%end%>
     <b>|</b>
     <a href=javascript:<%= visual_effect(:toggle_blind, 'new_scenario', {:duration => 0.0})%>><%= image_tag("themes/default/add.png", {:border => 0, :align => 'absmiddle'}) %></a>
