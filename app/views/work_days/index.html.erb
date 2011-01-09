@@ -6,6 +6,7 @@
         <th>Date</th>
         <th>In</th>
         <th>Out</th>
+        <th>Lunch</th>
         <th>Hours</th>
         <th>Day Type</th>
         <th>Note</th>
@@ -16,6 +17,7 @@
         <td width="18%"><%= display_work_day :work_date %></td>
         <td><%= display_work_day :in %></td>
         <td><%= display_work_day :out %></td>
+        <td><%= display_work_day :lunch %></td>
         <td><%= display_work_day :total_hours %></td>
         <td width="20%"><%= display_work_day :day_type %> (<%= work_day_day_type_actions(@work_day) %>)</td>
         <td width="10%"><%= display_work_day :note %></td>

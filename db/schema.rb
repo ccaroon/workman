@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101213193842) do
+ActiveRecord::Schema.define(:version => 20110109044139) do
 
   create_table "countdowns", :force => true do |t|
     t.string   "title",                          :null => false
@@ -74,6 +74,16 @@ ActiveRecord::Schema.define(:version => 20101213193842) do
     t.datetime "updated_at"
   end
 
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
   create_table "todos", :force => true do |t|
     t.integer  "priority",                                        :null => false
     t.string   "title",                                           :null => false
@@ -123,13 +133,14 @@ ActiveRecord::Schema.define(:version => 20101213193842) do
   end
 
   create_table "work_days", :force => true do |t|
-    t.date    "work_date",                      :null => false
-    t.time    "in",                             :null => false
-    t.time    "out",                            :null => false
+    t.date    "work_date",                                      :null => false
+    t.time    "in",                                             :null => false
+    t.time    "out",                                            :null => false
     t.string  "note"
-    t.boolean "is_vacation", :default => false, :null => false
-    t.boolean "is_holiday",  :default => false, :null => false
-    t.boolean "is_sick_day", :default => false, :null => false
+    t.boolean "is_vacation", :default => false,                 :null => false
+    t.boolean "is_holiday",  :default => false,                 :null => false
+    t.boolean "is_sick_day", :default => false,                 :null => false
+    t.time    "lunch",       :default => '2000-01-01 00:00:00'
   end
 
 end

@@ -5,6 +5,7 @@ require 'date';
 
 DEFAULT_IN_TIME  = '09:00';
 DEFAULT_OUT_TIME = '17:00';
+DEFAULT_LUNCH_TIME = '00:00';
 
 class WorkDay < ActiveRecord::Base
 
@@ -75,7 +76,7 @@ class WorkDay < ActiveRecord::Base
     end
     ############################################################################
     def total_hours
-        return (self.out.to_f() - self.in.to_f()) / 3600.0;
+        return ( (self.out.to_f() - self.in.to_f()) - (self.lunch.hour * 3600 + self.lunch.min * 60) ) / 3600.0;
     end
 
 end

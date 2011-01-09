@@ -14,6 +14,8 @@ module WorkDaysHelper
             value = work_day_time_for_display(@work_day.in);
         when :out
             value = work_day_time_for_display(@work_day.out);
+        when :lunch
+            value = work_day_lunch_for_display(@work_day.lunch);
         when :day_type
             value = work_day_day_type_for_display(@work_day);
         when :total_hours
@@ -39,6 +41,10 @@ module WorkDaysHelper
     ############################################################################
     def work_day_time_for_display(time)
         return time.strftime("%I:%M%p");
+    end
+    ############################################################################
+    def work_day_lunch_for_display(time)
+        return time.strftime("%H:%M");
     end
     ############################################################################
     def work_day_day_type_for_display(day)

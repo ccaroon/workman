@@ -4,7 +4,7 @@ Hours
 <% @report.work_days.each do |day| -%>
 <% day_hours = day.total_hours() -%>
 <% total += day_hours -%>
-* <%=h day.work_date.strftime("%m/%d") %>:  <%=h day.in.strftime("%I:%M%p") %> - <%=h day.out.strftime("%I:%M%p") %> (<%=h sprintf("%.2f",day_hours) %>) <%=h (day.note.nil? || day.note.empty?) ? '' : "[#{day.note}]" %>
+* <%=h day.work_date.strftime("%m/%d") %>:  <%=h day.in.strftime("%I:%M%p") %> - <%=h day.out.strftime("%I:%M%p") %> (<%=h sprintf("%.2f",day_hours) %>) <%=h (day.lunch.hour == 0 and day.lunch.min == 0) ? '' : "Lunch: " + day.lunch.strftime("%H:%M") %> <%=h (day.note.nil? || day.note.empty?) ? '' : "[#{day.note}]" %>
 <%end-%>
 
 Total: <%=h sprintf("%.2f",total) %>

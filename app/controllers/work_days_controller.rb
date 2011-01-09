@@ -95,6 +95,7 @@ class WorkDaysController < ApplicationController
 
         day.in  = WorkDay::DEFAULT_IN_TIME;
         day.out = WorkDay::DEFAULT_OUT_TIME;
+        day.lunch = WorkDay::DEFAULT_LUNCH_TIME;
 
         day.is_holiday  = false;
         day.is_vacation = false;
@@ -130,6 +131,7 @@ class WorkDaysController < ApplicationController
 
         day.in = 0;
         day.out = 0;
+        day.lunch = WorkDay::DEFAULT_LUNCH_TIME;
 
         day.is_holiday  = false;
         day.is_vacation = false;
