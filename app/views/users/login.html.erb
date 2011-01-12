@@ -1,15 +1,27 @@
 <html>
     <body>
         <p>
-        <h2><%=h @message.nil? ? "Please Login" : @message %></h2>
+        <h2><%=h @is_create ? "Create Initial User" : "Please Login" %></h2>
         <form action="<%= url_for :controller => 'users', :action => 'login' %>" method="post">
-            <%= image_tag("themes/default/user.png", {:border => 0, :align=>'absbottom'}) %>
-            <b>Username: </b><input type="text" name="user_name">
             <p>
-            <%= image_tag("themes/default/lock_on.png", {:border => 0, :align=>'absbottom'}) %>
-            <b>Password: </b><input type="password" name="password">
+                <%= image_tag("themes/default/user.png", {:border => 0, :align=>'absbottom'}) %>
+                <b>Username: </b><input type="text" name="user_name">
+            </p>
             <p>
-            <input type="submit" value="<%=h @button_text.nil? ? "Login" : @button_text %>">
+                <%= image_tag("themes/default/lock_on.png", {:border => 0, :align=>'absbottom'}) %>
+                <b>Password: </b><input type="password" name="password">
+            </p>
+            <% if @is_create %>
+            <p>
+                <%= image_tag("themes/default/user.png", {:border => 0, :align=>'absbottom'}) %>
+                <b>Real Name: </b><input type="text" name="name">
+            </p>
+            <p>
+                <%= image_tag("themes/default/user.png", {:border => 0, :align=>'absbottom'}) %>
+                <b>Email: </b><input type="text" name="email">
+            </p>
+            <% end %>
+            <input type="submit" value="<%=h @is_create ? "Create" : "Login" %>">
         </form>
     </body>
 </html>

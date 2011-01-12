@@ -10,14 +10,15 @@ class UsersController < ApplicationController
         session[:user_id] = nil;
 
         if (User.count == 0)
-            if (params[:user_name] && params[:password])
+            if (params[:user_name] && params[:password] &&
+                params[:email]     && params[:name])
                 user = User.new(:user_name => params[:user_name],
                     :password => params[:password],
-                    :name => params[:user_name].humanize);
+                    :name => params[:name],
+                    :email => params[:email]);
                 user.save!;
             else
-                @message = "Create Initial User";
-                @button_text = "Create";
+                @is_create = true;
             end
         end
 

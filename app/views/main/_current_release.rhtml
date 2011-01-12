@@ -6,7 +6,7 @@
     <% link_text = ticket.status =~ /(Ready for release|Closed|Rejected)/ ? "<s>#{ticket.key}</s>" : ticket.key %>
     <span style="font-size:<%=fs%>%" align="center">
         <abbr style="border:none;" title="<%=h "#{ticket.summary} (#{ticket.points})" %>">
-            <a href="http://jira.mcclatchyinteractive.com/browse/<%=ticket.key %>" target="_blank"><%=link_text%></a>
+            <a href="http://jira.mcclatchyinteractive.com/browse/<%=ticket.key %>"><%=link_text%></a>
         </abbr>
     </span>
     <% w=rand 15; h=rand 15%>

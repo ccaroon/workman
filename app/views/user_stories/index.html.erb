@@ -13,7 +13,7 @@
           <%= link_to s.title, {:controller => 'user_stories', :action => 'show', :id => s.id}, :style => "color: black" %> (<%=s.estimate%> hours)
                <%if (!s.jira_ticket.nil? && !s.jira_ticket.empty?)%>
                    --
-                   <a href="http://jira.mcclatchyinteractive.com/browse/<%=s.jira_ticket%>" target="_blank">[<%= s.jira_ticket%>]</a>
+                   <a href="http://jira.mcclatchyinteractive.com/browse/<%=s.jira_ticket%>">[<%= s.jira_ticket%>]</a>
                <% end %>
           </div>
       <% end %>

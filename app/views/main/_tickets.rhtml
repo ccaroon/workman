@@ -6,7 +6,7 @@
                 <a href="/entries/new_from_jira_ticket/index.html?ticket_num=<%= ticket.key %>&subject=<%=h ticket.summary %>&status=<%=h ticket.status %>"><img title="Entry from Ticket" src="/images/themes/default/add_entry.png" border="0"></a>
             </td>
             <td>
-                <a href="<%=ticket.link%>" target="_blank"><%= ticket.key %> - <%= ticket.summary %></a>
+                <a href="<%=ticket.link%>"><%= ticket.key %> - <%= ticket.summary %></a>
                 (<font color="<%=ticket.color%>"><%= ticket.status %></font>, <%= ticket.type %>, <%= ticket.points %>)
                 <%  unless (ticket.sub_tickets.empty?) %>
                      (<a href=javascript:<%= visual_effect(:toggle_blind, "sub_tickets-#{ticket.key}", {:duration => 0.0})%>><%=h ticket.sub_tickets.count%> Sub-tasks</a>)
@@ -23,7 +23,7 @@
                                 <a href="/entries/new_from_jira_ticket/index.html?ticket_num=<%= sub.key %>&subject=<%= sub.summary %>&status=<%=h sub.status %>"><img title="Entry from Ticket" src="/images/themes/default/add_entry.png" border="0"></a>
                             </td>
                             <td>
-                                <a href="<%=sub.link%>" target="_blank"><%= sub.key %> - <%= sub.summary %></a> (<font color="<%=sub.color%>"><%= sub.status %></font>)
+                                <a href="<%=sub.link%>"><%= sub.key %> - <%= sub.summary %></a> (<font color="<%=sub.color%>"><%= sub.status %></font>)
                             </td>
                         </tr>
                     <% end %>

@@ -1,6 +1,7 @@
 .DS_Store
 *.swp
 log/*.log
+log/*.pid
 tmp/**/*
 doc/api
 doc/app
