@@ -14,6 +14,10 @@ module NotesHelper
             value = note_title_for_display(@note)
         when :body
             value = (BlueCloth.new(@note.body).to_html);
+        when :print
+            value = note_print(@note);
+        when :edit
+            value = note_edit(@note);
         when :favorite_toggle
             value = note_favorite_toggle(@note);
         when :encrypted_toggle
@@ -34,6 +38,20 @@ module NotesHelper
         end
 
         return (title);
+    end
+    ############################################################################
+    def note_print(note)
+        html = link_to image_tag("themes/default/printer.png", {:border => 0}),
+            :controller => 'notes', :action => 'print', :id => note;
+
+        return (html);
+    end
+    ############################################################################
+    def note_edit(note)
+        html = link_to image_tag("themes/default/edit.png", {:border => 0}),
+            :controller => 'notes', :action => 'edit', :id => note;
+
+        return (html);
     end
     ############################################################################
     def note_favorite_toggle(note)

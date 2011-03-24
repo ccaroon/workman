@@ -2,14 +2,17 @@
     <b>Note</b> <%= @note.deleted_on.nil? ? '' : " -- Deleted On #{@note.deleted_on}" %>
 </div>
 
-<div style="text-align:center;font-size:large;font-weight:bold">
-    <%= display_note :favorite_toggle %> <%= display_note :title %> <%= display_note :encrypted_toggle %>
+<div style="text-align:center;font-size:large;font-variant:small-caps;" class="default">
+    <%= display_note :favorite_toggle %> <%= display_note :encrypted_toggle %> 
+    <%= display_note :title %>
+    <%= display_note :edit %> <%= display_note :print %>
 </div>
 
 <div style="padding:15px">
     <%= display_note :body %>
 </div>
 
-<%= link_to 'Edit', edit_note_path(@note) %>
-|
-<%= link_to 'Print', "#{notes_path}/print/#{@note.id}" %>
+<div style="text-align:center;" class="default">
+    <%= display_note :favorite_toggle %> <%= display_note :encrypted_toggle %> |
+    <%= display_note :edit %> <%= display_note :print %>
+</div>
