@@ -64,14 +64,4 @@ class Countdown < ActiveRecord::Base
 
         return(str);
     end
-    ############################################################################
-    def to_html
-        left = self.time_left;
-
-        str = "<strong>#{left.abs}</strong> #{display_units} ";
-        str << ((left >= 0) ? 'Until' : 'Since');
-        str << " <strong>#{title}</strong>";
-
-        return(str);
-    end
 end

@@ -1,7 +1,9 @@
 <% count = 0 %>
 <% for countdown in countdowns %>
     <div class="countdown_box" align="center">
-        <abbr title="<%= countdown.target_date.strftime("%b %d, %Y %I:%M %p") %>"><%= countdown.to_html %></abbr>
+        <abbr title="<%= countdown.target_date.strftime("%b %d, %Y %I:%M %p") %>">
+            <%= countdown_to_html(countdown) %>
+        </abbr>
     </div>
     <% count = count + 1 %>
     <% if (count % 4 == 0) %>
