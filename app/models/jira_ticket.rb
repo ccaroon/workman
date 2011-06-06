@@ -8,7 +8,6 @@ require 'pp';
 require 'user';
 
 class JiraTicket
-#    JIRA_URL = "http://_JIRA_HOST_/sr/jira.issueviews:searchrequest-xml/_JIRA_FILTER_ID_/SearchRequest-_JIRA_FILTER_ID_.xml?tempMax=1000&os_username=_JIRA_USER_&os_password=_JIRA_PASS_";
     JIRA_URL = "http://_JIRA_HOST_/sr/jira.issueviews:searchrequest-xml/temp/SearchRequest.xml?jqlQuery=_JIRA_QUERY_&tempMax=1000&os_username=_JIRA_USER_&os_password=_JIRA_PASS_";
     attr_accessor :key, :summary, :type, :priority, :status,
                   :link, :description, :sub_tickets, :points,
@@ -36,7 +35,6 @@ class JiraTicket
         url.gsub!(/_JIRA_HOST_/, User.user.jira_host);
         url.gsub!(/_JIRA_USER_/, User.user.jira_username);
         url.gsub!(/_JIRA_PASS_/, User.user.jira_password);
-#        url.gsub!(/_JIRA_FILTER_ID_/, filter_id.to_s);
         url.gsub!(/_JIRA_QUERY_/, query);
 
         uri = URI.parse(url);
