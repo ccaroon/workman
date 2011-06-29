@@ -11,22 +11,24 @@ if [ -z $WORKMAN_TDB_DATABASE ]; then WORKMAN_TDB_DATABASE='workman_test'; fi;
 
 if [ -z $WORKMAN_DDB_HOST ]; then WORKMAN_DDB_HOST='localhost'; fi;
 if [ -z $WORKMAN_DDB_DATABASE ]; then WORKMAN_DDB_DATABASE='workman_devel'; fi;
+
+# mongrel, passenger-standalone and thin should work
+if [ -z $WORKMAN_SERVER ]; then WORKMAN_SERVER='thin'; fi;
 ################################################################################
 case $1 in
     start) 
         cd $APP_DIR
-        mongrel_rails start -e production -p 5000 -d
+        $WORKMAN_SERVER start -e production -p 5000 -d
     ;;
     stop) 
         cd $APP_DIR
-        mongrel_rails stop
+        $WORKMAN_SERVER stop
     ;;
     restart) 
         cd $APP_DIR
-        mongrel_rails stop
+        $WORKMAN_SERVER stop
         sleep 1
-        rm -f log/mongrel.pid
-        mongrel_rails start -e production -p 5000 -d
+        $WORKMAN_SERVER start -e production -p 5000 -d
     ;;
     log) 
         cd $APP_DIR/log
@@ -48,7 +50,7 @@ case $1 in
         mysql -h$WORKMAN_DDB_HOST -u$WORKMAN_DDB_USERNAME $WORKMAN_DDB_DATABASE -p$WORKMAN_DDB_PASSWORD
     ;;
     status) 
-        ps -fp `cat $APP_DIR/log/mongrel.pid`
+        ps -fp `pgrep $WORKMAN_SERVER`
     ;;
     *) echo "workman: Unknown command [$1]";
 esac
