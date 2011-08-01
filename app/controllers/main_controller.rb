@@ -71,7 +71,9 @@ class MainController < ApplicationController
                 @total_points    = rt_cache[:total_points];
             end
 
-        @current_release_name = @release_tickets[0].fixVersion[0];
+        @current_release_name = (@release_tickets.length != 0) ?
+            @release_tickets[0].fixVersion[0] : '?????';
+
         rescue Exception => e
             @tickets = [];
             @release_tickets = [];
