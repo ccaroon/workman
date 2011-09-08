@@ -5,10 +5,11 @@ class MainController < ApplicationController
 
     helper :all;
 
-    CACHE_TIMEOUT = (15 * 60); # In seconds
+    @@cache = {
+            :tickets         => { :timeout => (2*60) },
+            :release_tickets => { :timeout => (15*60) }
+    };
 
-    @@cache = {:release_tickets => {}};
-    
     ############################################################################
     def home
         # todos with due dates
@@ -46,11 +47,19 @@ class MainController < ApplicationController
 
         begin
             # Default set of tickets, uses Jira Filter set in prefs.
-            @tickets = JiraTicket.find();
+            tix_cache = @@cache[:tickets];
+            if (Time.now.to_i - tix_cache[:cached_time].to_i > tix_cache[:timeout])
+                @tickets = JiraTicket.find();
+
+                tix_cache[:cached_time] = Time.now();
+                tix_cache[:tickets]     = @tickets;
+            else
+                @tickets = tix_cache[:tickets];
+            end
 
             # 11224 == 'Current Release' filter
             rt_cache = @@cache[:release_tickets];
-            if (Time.now.to_i - rt_cache[:cached_time].to_i > CACHE_TIMEOUT)
+            if (Time.now.to_i - rt_cache[:cached_time].to_i > rt_cache[:timeout])
                 @release_tickets = JiraTicket.find("filter=11224 AND assignee=#{User.user.jira_username}");
                 @ready_points = 0;
                 @total_points = 0;
