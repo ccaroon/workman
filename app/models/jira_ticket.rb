@@ -120,6 +120,7 @@ class JiraTicket
         when 'Hold': 'red'
         when 'Code Review': 'blue'
         when 'Ready for QA': 'purple'
+        when 'Verified': 'darkgreen'
         else 'black'
         end
         

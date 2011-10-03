@@ -6,7 +6,7 @@ class MainController < ApplicationController
     helper :all;
 
     @@cache = {
-            :tickets         => { :timeout => (2*60) },
+            :tickets         => { :timeout => (1*60) },
             :release_tickets => { :timeout => (15*60) }
     };
 
