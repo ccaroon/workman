@@ -43,24 +43,8 @@ Rails::Initializer.run do |config|
 4b939d8d7888d0496c36e0f50fbf68'
   }
 
-#   config.action_mailer.delivery_method       = :smtp;
-   config.action_mailer.raise_delivery_errors = true;
-# See User.rb
-#   config.action_mailer.smtp_settings = {
-#       :address   => 'mccexchange2.mcclatchy.com',
-#       :user_name => 'USER',
-#       :password  => 'PASSWD',
-##------------------------------------
-## NOTE: this will not work because Google require TLS
-## Need to get/use the smtp_tls plugin to use Google's SMTP server
-##------------------------------------
-##       :address        => 'smtp.gmail.com',
-##       :port           => 587,
-##       :user_name      => 'USER',
-##       :password       => 'PASSWD,
-##------------------------------------
-#       :authentication => :login,
-#   };
+  # See User.rb for action_mailer configuration.
+  config.action_mailer.raise_delivery_errors = true;
    
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper, 

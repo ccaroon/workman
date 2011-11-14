@@ -60,7 +60,13 @@ class User < ActiveRecord::Base
         ActionMailer::Base.delivery_method = self.email_type;
 
         if (self.email_type == 'smtp')
-            settings = {:address => self.smtp_host};
+            settings = {
+                :address              => self.smtp_host,
+                :enable_starttls_auto => true
+            };
+
+            # TODO: this should be a new user setting: user.smtp_port
+            settings[:port] = 587 if settings[:address] =~ /smtp.gmail.com/;
 
             if (self.smtp_auth != 'none')
                 settings[:user_name]      = self.smtp_user;
