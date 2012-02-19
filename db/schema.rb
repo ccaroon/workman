@@ -24,13 +24,11 @@ ActiveRecord::Schema.define(:version => 20110109044139) do
     t.date     "task_date",                        :null => false
     t.datetime "entry_date",                       :null => false
     t.string   "ticket_num"
-    t.string   "subject",     :default => "",      :null => false
+    t.string   "subject",                          :null => false
     t.text     "description",                      :null => false
     t.string   "category",    :default => "Other", :null => false
     t.integer  "goal_id"
   end
-
-  add_index "entries", ["id"], :name => "id", :unique => true
 
   create_table "goals", :force => true do |t|
     t.integer  "priority",                            :null => false
@@ -52,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20110109044139) do
     t.datetime "created_on",                      :null => false
     t.datetime "updated_on",                      :null => false
     t.text     "body",                            :null => false
-    t.boolean  "is_favorite"
+    t.boolean  "is_favorite",  :default => false, :null => false
     t.boolean  "is_encrypted", :default => false, :null => false
     t.datetime "deleted_on"
   end
