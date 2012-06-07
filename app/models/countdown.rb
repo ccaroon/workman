@@ -56,10 +56,10 @@ class Countdown < ActiveRecord::Base
 
             time_left =
             case
-                when frac >= 0.00 && frac < 0.25: base + 0.00;
-                when frac >= 0.25 && frac < 0.50: base + 0.25;
-                when frac >= 0.50 && frac < 0.75: base + 0.50;
-                when frac >= 0.75 && frac < 1.00: base + 0.75;
+                when frac >= 0.00 && frac < 0.25 then base + 0.00;
+                when frac >= 0.25 && frac < 0.50 then base + 0.25;
+                when frac >= 0.50 && frac < 0.75 then base + 0.50;
+                when frac >= 0.75 && frac < 1.00 then base + 0.75;
                 #else base;
             end
 

@@ -114,13 +114,13 @@ class JiraTicket
     ############################################################################
     def color
         color = case self.status
-        when 'Design/Verify': '#999900'
-        when 'Coding': 'green'
-        when 'In Progress': 'green'
-        when 'Hold': 'red'
-        when 'Code Review': 'blue'
-        when 'Ready for QA': 'purple'
-        when 'Verified': 'darkgreen'
+        when 'Design/Verify' then  '#999900'
+        when 'Coding' then  'green'
+        when 'In Progress' then  'green'
+        when 'Hold' then  'red'
+        when 'Code Review' then  'blue'
+        when 'Ready for QA' then  'purple'
+        when 'Verified' then  'darkgreen'
         else 'black'
         end
         

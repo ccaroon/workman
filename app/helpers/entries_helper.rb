@@ -5,20 +5,20 @@ require 'bluecloth';
 
 module EntriesHelper
     ############################################################################
-    def display_entry(attr)
+    def display_entry(e, attr)
         value = nil;
 
         case attr
         when :entry_date
-            value = @entry.entry_date.strftime("%b %d, %Y %I:%M%p");
+            value = e.entry_date.strftime("%b %d, %Y %I:%M%p");
         when :task_date
-            value = @entry.task_date.strftime("%b %d, %Y");
+            value = e.task_date.strftime("%b %d, %Y");
         when :description
-            value = (BlueCloth.new(@entry.description).to_html);
+            value = (BlueCloth.new(e.description).to_html);
         when :ticket
-            value = entry_ticket_link(@entry);
+            value = entry_ticket_link(e);
         else
-            value = @entry.send(attr);
+            value = e.send(attr);
         end
 
         return(value);

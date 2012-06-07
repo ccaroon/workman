@@ -1,0 +1,4 @@
+* Not working: link_to "blah', entry, :confirm => "Delete Entry?", :method => :delete
+    - Entries list
+    - Workdays list
+    

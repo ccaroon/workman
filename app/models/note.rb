@@ -9,7 +9,7 @@ class Note < ActiveRecord::Base
     # NOTE: Before changing this key/passphrase, make sure you un-encrypt all
     # of your encrpyted notes.
     ENCRYPTION_KEY = "Just hard-coding the key for now.";
-    CRYPTO         = Crypt::Blowfish.new(ENCRYPTION_KEY);
+    #CRYPTO         = Crypt::Blowfish.new(ENCRYPTION_KEY);
 
     validates_presence_of :title;
     validates_presence_of :body;

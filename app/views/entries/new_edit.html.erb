@@ -6,12 +6,8 @@
 
 <%= form_for(@entry) do |f| %>
 
-    <div class="error_messages">
-        <%= f.error_messages %>
-    </div>
-
     <b><%=  f.label :task_date %>:</b>
-    <%= calendariffic_input(false, 'entry_task_date', 'calendariffic/date.png',
+    <%= raw calendariffic_input(false, 'entry_task_date', 'calendariffic/date.png',
         'start_cal', '%Y-%m-%d', @entry.task_date, { :readonly => 'true'}, {:class => 'borderless'}) %>
     <p>
 

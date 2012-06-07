@@ -5,10 +5,9 @@
 <div style="padding-left:50px;padding-top:25px">
 
 <%= form_for(@work_day) do |f| %>
-    <div class="error_messages"><%= f.error_messages %></div>
 
     <b><%= f.label :work_date %>:</b>
-    <%= calendariffic_input(false, 'work_day_work_date', 'calendariffic/date.png',
+    <%= raw calendariffic_input(false, 'work_day_work_date', 'calendariffic/date.png',
         'start_cal', '%Y-%m-%d', @work_day.work_date, { :readonly => 'true'}, {:class => 'borderless'}) %>
     <p>
 

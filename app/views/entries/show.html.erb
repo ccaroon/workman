@@ -1,5 +1,5 @@
 <div class="header">
-    <b>Entry</b> - <%= display_entry :entry_date %>
+    <b>Entry</b> - <%= display_entry @entry, :entry_date %>
 </div>
 
 <div style="font-size:large;font-weight:bold">
@@ -13,8 +13,8 @@
     <br>
     <b>Goal: </b> <%= @entry.goal.nil? ? '' : @entry.goal.name %>
     <br>
-    <b>Task Date: </b> <%= display_entry :task_date %>
-    <p><%= display_entry :description %></p>
+    <b>Task Date: </b> <%= display_entry @entry, :task_date %>
+    <p><%= raw display_entry @entry, :description %></p>
 </div>
 
 <%= link_to 'Edit', edit_entry_path(@entry) %>

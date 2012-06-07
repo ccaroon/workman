@@ -4,27 +4,27 @@
 module WorkDaysHelper
 
     ############################################################################
-    def display_work_day(attr)
+    def display_work_day(work_day, attr)
         value = nil;
 
         case attr
         when :work_date
-            value = work_day_work_date_for_display(@work_day);
+            value = work_day_work_date_for_display(work_day);
         when :in
-            value = work_day_time_for_display(@work_day.in);
+            value = work_day_time_for_display(work_day.in);
         when :out
-            value = work_day_time_for_display(@work_day.out);
+            value = work_day_time_for_display(work_day.out);
         when :lunch
-            value = work_day_lunch_for_display(@work_day.lunch);
+            value = work_day_lunch_for_display(work_day.lunch);
         when :day_type
-            value = work_day_day_type_for_display(@work_day);
+            value = work_day_day_type_for_display(work_day);
         when :total_hours
-            value = work_day_total_hours_for_display(@work_day);
+            value = work_day_total_hours_for_display(work_day);
         else
-            value = @work_day.send(attr);
+            value = work_day.send(attr);
         end
         
-        if (@work_day.is_today?)
+        if (work_day.is_today?)
             value = "<b>#{value}</b>";
         end
 

@@ -8,9 +8,9 @@ module CountdownsHelper
         
         fract =
         case
-            when left.to_s =~ /\.25$/: '&frac14;';
-            when left.to_s =~ /\.50?$/: '&frac12;';
-            when left.to_s =~ /\.75$/: '&frac34;';
+            when left.to_s =~ /\.25$/ then '&frac14;';
+            when left.to_s =~ /\.50?$/ then '&frac12;';
+            when left.to_s =~ /\.75$/ then '&frac34;';
             else '';
         end
     
