@@ -8,14 +8,12 @@ REPORT_CC = [%w(developers@mcclatchyinteractive.com)];
 class ReportMailer < ActionMailer::Base
 
     def weekly(report)
-        subject    "[WR] #{(report.end_date-1).strftime("%Y.%m.%d")}";
-        recipients REPORT_TO;
-        cc         REPORT_CC;
-        from       User.user.email;
-        sent_on    Time.now;
-        content_type "text/html";
-
-        body       :report => report;
+        mail(:from => User.user.email,
+             :to => REPORT_TO,
+             :cc => REPORT_CC,
+             :content_type => "text/html",
+             :subject => "[WR] #{(report.end_date-1).strftime("%Y.%m.%d")}",
+             :body => report);
     end
 
 end

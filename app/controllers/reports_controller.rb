@@ -55,7 +55,7 @@ class ReportsController < ApplicationController
         report = Report.new(type.to_sym, date);
         report.run();
 
-        ReportMailer.deliver_weekly(report);
+        ReportMailer.weekly(report).deliver;
 
         redirect_to :controller => 'main', :action => 'home';
     end

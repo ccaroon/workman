@@ -4,7 +4,7 @@
 class CountdownsController < ApplicationController
     ############################################################################
     def index
-        @countdowns = Countdown.find(:all, :order => 'target_date');
+        @countdowns = Countdown.order('target_date').all;
 
         respond_to do |format|
             format.html # index.html.erb
@@ -13,7 +13,7 @@ class CountdownsController < ApplicationController
     end
     ############################################################################
     def show
-        @countdown = Countdown.find(params[:id])
+        @countdown = Countdown.where(:id => params[:id])
 
         respond_to do |format|
             format.html # show.html.erb
@@ -31,7 +31,7 @@ class CountdownsController < ApplicationController
     end
     ############################################################################
     def edit
-        @countdown = Countdown.find(params[:id]);
+        @countdown = Countdown.where(:id => params[:id])
 
         render :template => 'countdowns/new_edit';
     end
@@ -54,7 +54,7 @@ class CountdownsController < ApplicationController
     ############################################################################
     def update
         params[:countdown][:target_date] = parse_out_target_date(params);
-        @countdown = Countdown.find(params[:id])
+        @countdown = Countdown.where(:id => params[:id])
 
         respond_to do |format|
             if @countdown.update_attributes(params[:countdown])
@@ -69,8 +69,8 @@ class CountdownsController < ApplicationController
     end
     ############################################################################
     def destroy
-        @countdown = Countdown.find(params[:id])
-        @countdown.destroy
+        @countdown = Countdown.where(:id => params[:id]);
+        @countdown.destroy;
 
         respond_to do |format|
             format.html { redirect_to(countdowns_url) }
