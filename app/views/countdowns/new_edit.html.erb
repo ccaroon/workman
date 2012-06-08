@@ -5,7 +5,6 @@
 <div style="padding-left:50px;padding-top:25px">
 
 <%= form_for(@countdown) do |f| %>
-        <div class="error_messages"><%= f.error_messages %></div>
 
     <p>
         <%= f.label :title %><br />
@@ -13,7 +12,7 @@
     </p>
     <p>
         <%= f.label :target_date %><br />
-        <%= calendariffic_input(false, 'countdown__target_date', 'calendariffic/date.png',
+        <%= raw calendariffic_input(false, 'countdown__target_date', 'calendariffic/date.png',
         'start_cal', '%Y-%m-%d', @countdown.target_date.strftime("%Y-%m-%d"), { :readonly => 'true'}, {:class => 'borderless'}) %>
         <%= f.time_select :target_date %>
     </p>

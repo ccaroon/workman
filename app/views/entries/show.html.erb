@@ -9,7 +9,7 @@
 <div>
     <b>Category:</b> <%= @entry.category %>
     <br>
-    <b>Ticket: </b><%= (@entry.ticket_num.nil? || @entry.ticket_num.empty?) ? '' : "#{display_entry :ticket}" %>
+    <b>Ticket: </b><%= raw (@entry.ticket_num.nil? || @entry.ticket_num.empty?) ? '' : "#{raw display_entry @entry, :ticket}" %>
     <br>
     <b>Goal: </b> <%= @entry.goal.nil? ? '' : @entry.goal.name %>
     <br>

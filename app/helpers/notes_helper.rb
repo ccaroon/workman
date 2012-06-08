@@ -6,26 +6,26 @@ require 'bluecloth';
 module NotesHelper
 
     ############################################################################
-    def display_note(attr)
+    def display_note(note, attr)
         value = nil;
 
         case attr
         when :title
-            value = note_title_for_display(@note)
+            value = note_title_for_display(note)
         when :body
-            value = (BlueCloth.new(@note.body).to_html);
+            value = (BlueCloth.new(note.body).to_html);
         when :print
-            value = note_print(@note);
+            value = note_print(note);
         when :edit
-            value = note_edit(@note);
+            value = note_edit(note);
         when :favorite_toggle
-            value = note_favorite_toggle(@note);
+            value = note_favorite_toggle(note);
         when :encrypted_toggle
-            value = note_encrypted_toggle(@note);
+            value = note_encrypted_toggle(note);
         when :modifiers
-            value = "#{note_favorite_toggle(@note)}&nbsp;#{note_encrypted_toggle(@note)}";
+            value = "#{note_favorite_toggle(note)}&nbsp;#{note_encrypted_toggle(note)}";
         else
-            value = @note.send(attr);
+            value = note.send(attr);
         end
 
         return(value);

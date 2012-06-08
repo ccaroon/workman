@@ -3,16 +3,16 @@
 </div>
 
 <div style="text-align:center;font-size:large;font-variant:small-caps;" class="default">
-    <%= display_note :favorite_toggle %> <%= display_note :encrypted_toggle %> 
-    <%= display_note :title %>
-    <%= display_note :edit %> <%= display_note :print %>
+    <%= display_note @note, :favorite_toggle %> <%= display_note @note, :encrypted_toggle %> 
+    <%= raw display_note @note, :title %>
+    <%= display_note @note, :edit %> <%= display_note @note, :print %>
 </div>
 
 <div style="padding:15px">
-    <%= display_note :body %>
+    <%= raw display_note @note, :body %>
 </div>
 
 <div style="text-align:center;" class="default">
-    <%= display_note :favorite_toggle %> <%= display_note :encrypted_toggle %> |
-    <%= display_note :edit %> <%= display_note :print %>
+    <%= display_note @note, :favorite_toggle %> <%= display_note @note, :encrypted_toggle %> |
+    <%= display_note @note, :edit %> <%= display_note @note, :print %>
 </div>

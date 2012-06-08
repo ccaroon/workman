@@ -11,28 +11,28 @@ module TodosHelper
         3 => 'circle_yellow.png',
     };
 
-    def display_todo(attr, opts = {})
+    def display_todo(todo, attr, opts = {})
         value = nil;
 
         case attr
         when :title
-            value = todo_title_for_display(@todo);
+            value = todo_title_for_display(todo);
         when :description
-            unless (@todo.description.nil?)
-                value = (BlueCloth.new(@todo.description).to_html);
+            unless (todo.description.nil?)
+                value = (BlueCloth.new(todo.description).to_html);
                 if (opts[:flatten])
                     value.gsub!(/<p>/, '');
                     value.gsub!(/<\/p>/, '');
                 end
             end
         when :due_date
-            value = todo_due_date_for_display(@todo);
+            value = todo_due_date_for_display(todo);
         when :completed_date
-            value = todo_completed_date_for_display(@todo);
+            value = todo_completed_date_for_display(todo);
         when :priority
-            value = todo_priority_for_display(@todo);
+            value = todo_priority_for_display(todo);
         else
-            value = @todo.send(attr);
+            value = todo.send(attr);
         end
 
         return(value);

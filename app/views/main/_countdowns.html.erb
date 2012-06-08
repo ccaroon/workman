@@ -2,7 +2,7 @@
 <% for countdown in countdowns %>
     <div class="countdown_box" align="center">
         <abbr title="<%= countdown.target_date.strftime("%b %d, %Y %I:%M %p") %>">
-            <%= countdown_to_html(countdown) %>
+            <%= raw countdown_to_html(countdown) %>
         </abbr>
     </div>
     <% count = count + 1 %>

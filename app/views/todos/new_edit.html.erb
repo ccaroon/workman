@@ -5,7 +5,6 @@
 <div style="padding-left:50px;padding-top:25px">
 
 <%= form_for(@todo) do |f| %>
-    <div class="error_messages"><%= f.error_messages %></div>
 
     <b><%=  f.label :completed %>:</b>
     <%= f.check_box :completed %>
@@ -16,7 +15,7 @@
     <p>
 
     <b><%=  f.label :due_date %>:</b>
-    <%= calendariffic_input(false, 'todo_due_on', 'calendariffic/date.png',
+    <%= raw calendariffic_input(false, 'todo_due_on', 'calendariffic/date.png',
         'start_cal', '%Y-%m-%d', @todo.due_on, {:readonly => true, :size => 10}, {:class => 'borderless'}) %>
     <img src="/images/themes/unknown/grey_x.gif" title="Clear Due Date" onClick="$('todo_due_on').value = '';">
     <p>

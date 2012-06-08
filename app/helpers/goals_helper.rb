@@ -6,20 +6,20 @@ require 'bluecloth';
 module GoalsHelper
 
     ############################################################################
-    def display_goal(attr)
+    def display_goal(goal, attr)
         value = nil;
 
         case attr
         when :name
-            value = goal_name_for_display(@goal);
+            value = goal_name_for_display(goal);
         when :obstacles
-            value = goal_obstacles_for_display(@goal);
+            value = goal_obstacles_for_display(goal);
         when :description
-            unless (@goal.description.nil?)
-                value = (BlueCloth.new(@goal.description).to_html);
+            unless (goal.description.nil?)
+                value = (BlueCloth.new(goal.description).to_html);
             end            
         else
-            value = @goal.send(attr);
+            value = goal.send(attr);
         end
 
         return(value);

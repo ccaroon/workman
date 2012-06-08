@@ -1,12 +1,12 @@
 <table class="list" width="100%">
-    <% for @todo in @todos%>
+    <% for todo in @todos%>
         <tr class="<%= cycle('row_even','row_odd') %>">
             <td width="5%" align="center">
-                <%= display_todo :priority %>
+                <%= display_todo todo, :priority %>
             </td>
             <td>
-                <abbr style='border:none' title='<%= display_todo :due_date %>'><%= link_to (display_todo :title), edit_todo_path(@todo) %></abbr>
-                <span class="todos_list_item_desc"><%= display_todo :description, {:flatten => true} %></span>
+                <abbr style='border:none' title='<%= display_todo todo, :due_date %>'><%= link_to (raw display_todo todo, :title), edit_todo_path(todo) %></abbr>
+                <span class="todos_list_item_desc"><%= raw display_todo todo, :description, {:flatten => true} %></span>
             </td>
         </tr>
     <% end %>

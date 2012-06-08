@@ -2,8 +2,11 @@
 # $Id: report_mailer.rb 2236 2010-12-13 21:27:33Z ccaroon $
 ################################################################################
 
-REPORT_TO = [%w(wkreiling@mcclatchyinteractive.com sschnorr@mcclatchyinteractive.com)];
-REPORT_CC = [%w(developers@mcclatchyinteractive.com)];
+#REPORT_TO = [%w(wkreiling@mcclatchyinteractive.com sschnorr@mcclatchyinteractive.com)];
+#REPORT_CC = [%w(developers@mcclatchyinteractive.com)];
+
+REPORT_TO = [%w(ccaroon@mcclatchyinteractive.com)];
+REPORT_CC = [%w(craig-web@caroon.org)];
 
 class ReportMailer < ActionMailer::Base
 

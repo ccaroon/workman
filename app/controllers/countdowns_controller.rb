@@ -13,7 +13,7 @@ class CountdownsController < ApplicationController
     end
     ############################################################################
     def show
-        @countdown = Countdown.where(:id => params[:id])
+        @countdown = Countdown.where(:id => params[:id]).first;
 
         respond_to do |format|
             format.html # show.html.erb
@@ -31,7 +31,7 @@ class CountdownsController < ApplicationController
     end
     ############################################################################
     def edit
-        @countdown = Countdown.where(:id => params[:id])
+        @countdown = Countdown.where(:id => params[:id]).first;
 
         render :template => 'countdowns/new_edit';
     end
@@ -54,7 +54,7 @@ class CountdownsController < ApplicationController
     ############################################################################
     def update
         params[:countdown][:target_date] = parse_out_target_date(params);
-        @countdown = Countdown.where(:id => params[:id])
+        @countdown = Countdown.where(:id => params[:id]).first;
 
         respond_to do |format|
             if @countdown.update_attributes(params[:countdown])
@@ -69,7 +69,7 @@ class CountdownsController < ApplicationController
     end
     ############################################################################
     def destroy
-        @countdown = Countdown.where(:id => params[:id]);
+        @countdown = Countdown.where(:id => params[:id]).first;
         @countdown.destroy;
 
         respond_to do |format|

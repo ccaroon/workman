@@ -3,21 +3,21 @@
 </div>
 <p>
 <div style="font-size:large;font-weight:bold">
-    <%= display_list :name %>
+    <%= display_list @list, :name %>
 </div>
 <p>
 <table width="50%">
-<% @list.todos.each do |@todo| %>
-    <% image = @todo.completed ? "checkbox_on.gif" : "checkbox_off.gif" %>
+<% @list.todos.each do |todo| %>
+    <% image = todo.completed ? "checkbox_on.gif" : "checkbox_off.gif" %>
     <tr class="<%= cycle('row_even','row_odd') %>">
-        <td width="5%" align="center"><%= link_to image_tag("themes/default/#{image}", {:title=>'Mark Complete', :border=>0}), :controller => 'todos', :action => 'mark_complete', :id => @todo.id %></td>
+        <td width="5%" align="center"><%= link_to image_tag("themes/default/#{image}", {:title=>'Mark Complete', :border=>0}), :controller => 'todos', :action => 'mark_complete', :id => todo.id %></td>
         <td>
-          <% data = "Priority: #{@todo.priority} Due: #{display_todo :due_date} Completed: #{display_todo :completed_date}" %>
-          <abbr style='border:none' title='<%= data %>'><%= link_to (display_todo :title), edit_todo_path(@todo) %></abbr>
-          <span class="todos_list_item_desc"><%= display_todo :description, {:flatten => true} %></span>
+          <% data = "Priority: #{todo.priority} Due: #{display_todo todo, :due_date} Completed: #{display_todo todo, :completed_date}" %>
+          <abbr style='border:none' title='<%= data %>'><%= link_to (raw display_todo todo, :title), edit_todo_path(todo) %></abbr>
+          <span class="todos_list_item_desc"><%= display_todo todo, :description, {:flatten => true} %></span>
         </td>
         <td width="5%">
-            <%= link_to image_tag("themes/default/delete.png", {:border => 0}), @todo, :confirm => "'#{@todo.title}'\n\nDelete this todo?", :method => :delete %>
+            <%= link_to image_tag("themes/default/delete.png", {:border => 0}), todo, :confirm => "'#{todo.title}'\n\nDelete this todo?", :method => :delete %>
         </td>
 <% end %>
     </tr>

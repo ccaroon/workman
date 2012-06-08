@@ -5,8 +5,8 @@ module ListsHelper
     include TodosHelper;
     
     ############################################################################
-    def display_list(attr)
-        value = @list.send(attr);
+    def display_list(list, attr)
+        value = list.send(attr);
         return(value);
     end
 end

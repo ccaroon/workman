@@ -3,7 +3,7 @@
         <%tr_class = cycle('row_even','row_odd') %>
         <tr class="<%= tr_class %>">
             <td align="center">
-                <a href="/entries/new_from_jira_ticket/index.html?ticket_num=<%= ticket.key %>&subject=<%=h ticket.summary %>&status=<%=h ticket.status %>"><img title="Entry from Ticket" src="/images/themes/default/add_entry.png" border="0"></a>
+                <a href="/entries/new_from_jira_ticket/index.html?ticket_num=<%= ticket.key %>&subject=<%=h ticket.summary %>&status=<%=h ticket.status %>"><%= image_tag("themes/default/add_entry.png", {:title=>'Entry from Ticket', :border=>0}) %></a>
             </td>
             <td>
                 <a href="<%=ticket.link%>"><%= ticket.key %> - <%= ticket.summary %></a>

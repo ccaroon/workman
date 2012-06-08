@@ -14,7 +14,7 @@
 <% @countdowns.each do |countdown| %>
   <tr class="<%= cycle('row_even','row_odd') %>">
     <td>
-        <%= countdown_to_html(countdown) %>
+        <%= raw countdown_to_html(countdown) %>
     </td>
     <td><%=h countdown.target_date.strftime("%b %d, %Y %I:%M:%S %p") %></td>
     <td><%=h countdown.on_homepage ? 'Yes' : 'No' %></td>

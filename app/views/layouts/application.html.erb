@@ -1,12 +1,15 @@
 <html>
     <head>
         <title>Workman - <%= controller.controller_name.capitalize + " " + controller.action_name.capitalize %></title>
-        <%= stylesheet_link_tag 'workman' %>
+
+        <%= stylesheet_link_tag    "application", :media => "all" %>
+
         <%= stylesheet_link_tag User.user.nil? ? 'None' : User.user.style_main %>
         <%= stylesheet_link_tag 'calendariffic/calendar-'+(User.user.nil? ? 'system' : User.user.style_calendar)+'.css' %>
-        <%= javascript_include_tag 'calendariffic/calendar.js', 'calendariffic/calendar-setup.js', 'calendariffic/lang/calendar-en.js' %>
+
         <%= javascript_include_tag "application" %>
         <%= csrf_meta_tags %>
+
     </head>
     <body id="main_body">
 

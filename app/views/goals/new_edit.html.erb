@@ -5,7 +5,6 @@
 <div style="padding-left:50px;padding-top:25px">
 
 <%= form_for(@goal) do |f| %>
-    <%= f.error_messages %>
 
     <b><%=  f.label :priority %>:</b>
     <%= f.select(:priority, Goal::PRIORITIES.collect {|p| [p, p] }) %>

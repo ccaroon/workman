@@ -14,21 +14,21 @@
         <th>Completed Date</th>
         <th>Actions</th>
     </tr>
-    <% @todos.each do |@todo| %>
+    <% @todos.each do |todo| %>
     <tr class="<%= cycle('row_even','row_odd') %>">
-        <td><%= display_todo :priority %></td>
+        <td><%= display_todo todo, :priority %></td>
         <td>
-            <%= link_to (display_todo :title), @todo %><br>
-            <span class="todos_list_item_desc"><%= display_todo :description, {:flatten => true} %></span>
+            <%= link_to (raw display_todo todo, :title), todo %><br>
+            <span class="todos_list_item_desc"><%= raw display_todo todo, :description, {:flatten => true} %></span>
         </td>
-        <td><%= display_todo :due_date %></td>
-        <td><%= display_todo :completed_date %></td>
+        <td><%= display_todo todo, :due_date %></td>
+        <td><%= display_todo todo, :completed_date %></td>
         <td>
-            <%= link_to image_tag("themes/default/show.png", {:border => 0}), @todo %>
-            <%= link_to image_tag("themes/default/edit.png", {:border => 0}), edit_todo_path(@todo) %>
-            <%= link_to image_tag("themes/default/delete.png", {:border => 0}), @todo, :confirm => 'Delete this todo?', :method => :delete %>
+            <%= link_to image_tag("themes/default/show.png", {:border => 0}), todo %>
+            <%= link_to image_tag("themes/default/edit.png", {:border => 0}), edit_todo_path(todo) %>
+            <%= link_to image_tag("themes/default/delete.png", {:border => 0}), todo, :confirm => 'Delete this todo?', :method => :delete %>
             <%= link_to image_tag("themes/default/checkmark.png", {:border => 0}),
-                :controller => 'todos', :action => 'mark_complete', :id => @todo %>
+                :controller => 'todos', :action => 'mark_complete', :id => todo %>
         </td>
     </tr>
     <% end  %>

@@ -15,22 +15,22 @@
         <th>Obstacles</th>
         <th>Actions</th>
     </tr>
-    <% @goals.each do |@goal| %>
+    <% @goals.each do |goal| %>
     <tr class="<%= cycle('row_even','row_odd') %>">
-        <td><%= display_goal :priority %></td>
-        <td><%= display_goal :percent_complete %></td>
-        <td><%= link_to (display_goal :name), @goal %></td>
-        <td width="25%"><%= display_goal :description %></td>
-        <td><%= display_goal :obstacles %></td>
+        <td><%= display_goal goal, :priority %></td>
+        <td><%= display_goal goal, :percent_complete %></td>
+        <td><%= link_to (raw display_goal goal, :name), goal %></td>
+        <td width="25%"><%= raw display_goal goal, :description %></td>
+        <td><%= display_goal goal, :obstacles %></td>
         <td>
-            <%= link_to image_tag("themes/default/show.png", {:border => 0}), @goal %>
-            <%= link_to image_tag("themes/default/edit.png", {:border => 0}), edit_goal_path(@goal) %>
-            <%= link_to image_tag("themes/default/delete.png", {:border => 0}), @goal, :confirm => 'Delete this goal?', :method => :delete %>
+            <%= link_to image_tag("themes/default/show.png", {:border => 0}), goal %>
+            <%= link_to image_tag("themes/default/edit.png", {:border => 0}), edit_goal_path(goal) %>
+            <%= link_to image_tag("themes/default/delete.png", {:border => 0}), goal, :confirm => 'Delete this goal?', :method => :delete %>
 
-            <%  unless (@goal.completed) %>
+            <%  unless (goal.completed) %>
                 |
-                <%=  link_to image_tag("themes/default/checkmark.png", {:border => 0}), :controller => 'goals', :action => 'mark_complete', :id => @goal %>
-                <%=  link_to image_tag("themes/default/warning.png", {:border => 0}),   :controller => 'goals', :action => 'new_obstacle',  :id => @goal %>
+                <%=  link_to image_tag("themes/default/checkmark.png", {:border => 0}), :controller => 'goals', :action => 'mark_complete', :id => goal %>
+                <%=  link_to image_tag("themes/default/warning.png", {:border => 0}),   :controller => 'goals', :action => 'new_obstacle',  :id => goal %>
             <%  end %>
         </td>
     </tr>

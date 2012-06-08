@@ -3,17 +3,17 @@
 </div>
 
 <div style="font-size:large;font-weight:bold">
-    <%= display_todo :priority %> - <%= display_todo :title %>
+    <%= display_todo @todo, :priority %> - <%= raw display_todo @todo, :title %>
 </div>
 
 <p>
-    <b>Due: </b><%= display_todo :due_date %>
+    <b>Due: </b><%= display_todo @todo, :due_date %>
     <br>
-    <b>Completed: </b><%= display_todo :completed_date %>
+    <b>Completed: </b><%= display_todo @todo, :completed_date %>
 </p>
 
 <p>
-    <%= display_todo :description %>
+    <%= raw display_todo @todo, :description %>
 </p>
 
 <%= link_to 'Edit', edit_todo_path(@todo) %>

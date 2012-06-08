@@ -12,16 +12,16 @@
         <th width="75%">Title</th>
         <th>Actions</th>
     </tr>
-    <% @notes.each do |@note| %>
+    <% @notes.each do |note| %>
     <tr class="<%= cycle('row_even','row_odd') %>">
-        <td><%= display_note :modifiers %></td>
-        <td><%= link_to (display_note :title), @note %></td>
+        <td><%= raw display_note note, :modifiers %></td>
+        <td><%= link_to (raw display_note note, :title), note %></td>
         <td>
-            <%= link_to image_tag("themes/default/show.png", {:border => 0}), @note %>
-            <%= link_to image_tag("themes/default/edit.png", {:border => 0}), edit_note_path(@note) %>
+            <%= link_to image_tag("themes/default/show.png", {:border => 0}), note %>
+            <%= link_to image_tag("themes/default/edit.png", {:border => 0}), edit_note_path(note) %>
 
-            <% message = @note.deleted_on.nil? ? "DELETE '#{@note.title}'?" : "UNDELETE '#{@note.title}'?" %>
-            <%= link_to image_tag("themes/default/delete.png", {:border => 0}), @note, :confirm => message, :method => :delete %></td>
+            <% message = note.deleted_on.nil? ? "DELETE '#{note.title}'?" : "UNDELETE '#{note.title}'?" %>
+            <%= link_to image_tag("themes/default/delete.png", {:border => 0}), note, :confirm => message, :method => :delete %></td>
     </tr>
     <% end  %>
 </table>

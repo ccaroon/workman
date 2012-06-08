@@ -3,15 +3,15 @@
 </div>
 
 <div style="font-size:large;font-weight:bold">
-    #<%= display_goal :priority %>) <%= display_goal :name %> - <%= display_goal :percent_complete %>% complete.
+    #<%= display_goal @goal, :priority %>) <%= raw display_goal @goal, :name %> - <%= display_goal @goal, :percent_complete %>% complete.
 </div>
 
 <div style="padding:15px">
-    <%= display_goal :description %>
+    <%= raw display_goal @goal, :description %>
 </div>
 
 <div class="error_message">
-    <%= display_goal :obstacles %>
+    <%= display_goal @goal, :obstacles %>
 </div>
 
 <p>
