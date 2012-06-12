@@ -1,0 +1,35 @@
+<div class="header">
+    <b><%= controller.action_name.capitalize %> Countdown</b>
+</div>
+
+<div style="padding-left:50px;padding-top:25px">
+
+<%= form_for(@countdown) do |f| %>
+
+    <p>
+        <%= f.label :title %><br />
+        <%= f.text_field :title %>
+    </p>
+    <p>
+        <%= f.label :target_date %><br />
+        <%= raw calendariffic_input(false, 'countdown__target_date', 'calendariffic/date.png',
+        'start_cal', '%Y-%m-%d', @countdown.target_date.strftime("%Y-%m-%d"), { :readonly => 'true'}, {:class => 'borderless'}) %>
+        <%= f.time_select :target_date %>
+    </p>
+    <p>
+        <%= f.label :units %><br />
+        <%=  f.select("units", Countdown::UNITS.collect {|c| [ c.capitalize.pluralize, c]}) %>
+    </p>
+    <p>
+        <%= f.label :on_homepage %><br />
+        <%= f.check_box :on_homepage %>
+    </p>
+    <p>
+        <%= f.submit 'Save' %>
+    </p>
+<% end %>
+
+<%= link_to 'Show', @countdown %> |
+<%= link_to 'Back', countdowns_path %>
+
+</div>

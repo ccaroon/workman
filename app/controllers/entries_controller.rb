@@ -3,6 +3,7 @@
 ################################################################################
 class EntriesController < ApplicationController
 
+    respond_to :html;
     before_filter :load_recent_entries, :only => [:new, :edit];
 
     ############################################################################
@@ -15,29 +16,14 @@ class EntriesController < ApplicationController
         @entries = Entry.paginate(:page => params[:page],
             :conditions => conditions,
             :order => 'task_date desc, entry_date desc');
-
-        respond_to do |format|
-            format.html # index.html.erb
-            format.xml  { render :xml => @entries }
-        end
     end
     ############################################################################
     def show
         @entry = Entry.find(params[:id])
-
-        respond_to do |format|
-            format.html # show.html.erb
-            format.xml  { render :xml => @entry }
-        end
     end
     ############################################################################
     def new
         @entry = Entry.new(:task_date => Time.now().strftime("%Y-%m-%d"));
-
-        respond_to do |format|
-            format.html { render :template => 'entries/new_edit'}
-            format.xml  { render :xml => @entry }
-        end
     end
     ############################################################################
     def new_from_jira_ticket
@@ -61,8 +47,6 @@ class EntriesController < ApplicationController
     ############################################################################
     def edit
         @entry = Entry.find(params[:id]);
-
-        render :template => 'entries/new_edit';
     end
     ############################################################################
     def create
@@ -74,10 +58,8 @@ class EntriesController < ApplicationController
             if @entry.save
                 flash[:notice] = 'Entry was successfully created.'
                 format.html { redirect_to(@entry) }
-                format.xml  { render :xml => @entry, :status => :created, :location => @entry }
             else
                 format.html { render :action => "new_edit" }
-                format.xml  { render :xml => @entry.errors, :status => :unprocessable_entity }
             end
         end
     end
@@ -91,10 +73,8 @@ class EntriesController < ApplicationController
             if @entry.update_attributes(params[:entry])
                 flash[:notice] = 'Entry was successfully updated.'
                 format.html { redirect_to(@entry) }
-                format.xml  { head :ok }
             else
                 format.html { render :action => "edit" }
-                format.xml  { render :xml => @entry.errors, :status => :unprocessable_entity }
             end
         end
     end
@@ -105,7 +85,6 @@ class EntriesController < ApplicationController
 
         respond_to do |format|
             format.html { redirect_to(entries_url) }
-            format.xml  { head :ok }
         end
     end
     ############################################################################

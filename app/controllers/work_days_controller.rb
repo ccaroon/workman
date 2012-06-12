@@ -4,41 +4,26 @@
 require 'work_day';
 
 class WorkDaysController < ApplicationController
+    respond_to :html;
+    
     ############################################################################
     def index
         date = params[:date].nil? ? Date.today : Date.strptime(params[:date], '%Y%m%d');
         @work_days = WorkDay.find_week(date);
-
-        respond_to do |format|
-            format.html # index.html.erb
-            format.xml  { render :xml => @work_days }
-        end
     end
     ############################################################################
     def show
         @work_day = WorkDay.find(params[:id])
-
-        respond_to do |format|
-            format.html # show.html.erb
-            format.xml  { render :xml => @work_day }
-        end
     end
     ############################################################################
     def new
         @work_day = WorkDay.new(:work_date => Time.now().strftime("%Y-%m-%d"),
                                 :in        => WorkDay::DEFAULT_IN_TIME,
                                 :out       => WorkDay::DEFAULT_OUT_TIME);
-
-        respond_to do |format|
-            format.html {render :template => 'work_days/new_edit'}
-            format.xml  { render :xml => @work_day }
-        end
     end
     ############################################################################
     def edit
         @work_day = WorkDay.find(params[:id]);
-
-        render :template => 'work_days/new_edit';
     end
     ############################################################################
     def create
@@ -49,10 +34,8 @@ class WorkDaysController < ApplicationController
             if @work_day.save
                 flash[:notice] = 'WorkDay was successfully created.'
                 format.html { redirect_to(@work_day) }
-                format.xml  { render :xml => @work_day, :status => :created, :location => @work_day }
             else
                 format.html { render :action => "new" }
-                format.xml  { render :xml => @work_day.errors, :status => :unprocessable_entity }
             end
         end
     end
@@ -65,10 +48,8 @@ class WorkDaysController < ApplicationController
             if @work_day.update_attributes(params[:work_day])
                 flash[:notice] = 'WorkDay was successfully updated.'
                 format.html { redirect_to(@work_day) }
-                format.xml  { head :ok }
             else
                 format.html { render :action => "edit" }
-                format.xml  { render :xml => @work_day.errors, :status => :unprocessable_entity }
             end
         end
     end
@@ -79,7 +60,6 @@ class WorkDaysController < ApplicationController
 
         respond_to do |format|
             format.html { redirect_to(work_days_url) }
-            format.xml  { head :ok }
         end
     end
     ############################################################################
