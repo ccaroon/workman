@@ -5,6 +5,7 @@ gem "crypt", "~> 1.1.4"
 gem 'mysql'
 gem 'rails', '3.2.0'
 gem "will_paginate", "~> 3.0.3"
+gem "jquery-rails", "~> 2.0.2"
 
 group :development, :test do
   gem 'rake', '~> 0.9'
