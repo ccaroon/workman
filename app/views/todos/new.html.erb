@@ -17,7 +17,12 @@
     <b><%=  f.label :due_date %>:</b>
     <%= raw calendariffic_input(false, 'todo_due_on', 'calendariffic/date.png',
         'start_cal', '%Y-%m-%d', @todo.due_on, {:readonly => true, :size => 10}, {:class => 'borderless'}) %>
-    <img src="/images/themes/unknown/grey_x.gif" title="Clear Due Date" onClick="$('todo_due_on').value = '';">
+
+    <%= link_to image_tag("themes/unknown/grey_x.gif", {
+        :border  => 0,
+        :onClick => "$('todo_due_on').value = '';" })
+    %>
+    
     <p>
 
     <b><%=  f.label :title %>:</b>

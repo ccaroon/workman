@@ -2,38 +2,23 @@
 # $Id: obstacles_controller.rb 1363 2008-11-14 19:06:05Z ccaroon $
 ################################################################################
 class ObstaclesController < ApplicationController
+  
+    respond_to :html;
     ############################################################################
     def index
-        @obstacles = Obstacle.find(:all)
-
-        respond_to do |format|
-            format.html # index.html.erb
-            format.xml  { render :xml => @obstacles }
-        end
+        @obstacles = Obstacle.find(:all);
     end
     ############################################################################
     def show
-        @obstacle = Obstacle.find(params[:id])
-
-        respond_to do |format|
-            format.html # show.html.erb
-            format.xml  { render :xml => @obstacle }
-        end
+        @obstacle = Obstacle.find(params[:id]);
     end
     ############################################################################
     def new
-        @obstacle = Obstacle.new
-
-        respond_to do |format|
-            format.html { render :template => 'obstacles/new_edit'}
-            format.xml  { render :xml => @obstacle }
-        end
+        @obstacle = Obstacle.new;
     end
     ############################################################################
     def edit
         @obstacle = Obstacle.find(params[:id]);
-
-        render :template => 'obstacles/new_edit';
     end
     ############################################################################
     def create
@@ -43,10 +28,8 @@ class ObstaclesController < ApplicationController
             if @obstacle.save
                 flash[:notice] = 'Obstacle was successfully created.'
                 format.html { redirect_to(@obstacle) }
-                format.xml  { render :xml => @obstacle, :status => :created, :location => @obstacle }
             else
                 format.html { render :action => "new" }
-                format.xml  { render :xml => @obstacle.errors, :status => :unprocessable_entity }
             end
         end
     end
@@ -58,10 +41,8 @@ class ObstaclesController < ApplicationController
             if @obstacle.update_attributes(params[:obstacle])
                 flash[:notice] = 'Obstacle was successfully updated.'
                 format.html { redirect_to(@obstacle) }
-                format.xml  { head :ok }
             else
                 format.html { render :action => "edit" }
-                format.xml  { render :xml => @obstacle.errors, :status => :unprocessable_entity }
             end
         end
     end
@@ -72,7 +53,6 @@ class ObstaclesController < ApplicationController
 
         respond_to do |format|
             format.html { redirect_to(obstacles_url) }
-            format.xml  { head :ok }
         end
     end
     ############################################################################

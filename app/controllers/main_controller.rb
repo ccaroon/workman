@@ -4,46 +4,48 @@
 class MainController < ApplicationController
 
     helper :all;
-
+    respond_to :html;
+    ############################################################################
     @@cache = {
             :tickets         => { :timeout => (1*60) },
             :release_tickets => { :timeout => (15*60) }
     };
-
     ############################################################################
     def home
         # todos with due dates
-        todos1 = Todo.find(:all, 
-                           :order => 'due_on, priority',
-                           :conditions => "completed = 0 and due_on is not null and list_id is null");
+        todos1 = Todo.where("completed = 0 and due_on is not null and list_id is null")
+                     .order('due_on, priority')
+                     .all;
 
         # todos without due dates
-        todos2 = Todo.find(:all, 
-                           :order => 'priority',
-                           :conditions => "completed = 0 and due_on is null and list_id is null");
+        todos2 = Todo.where("completed = 0 and due_on is null and list_id is null")
+                     .order('priority')
+                     .all;
+
         @todos = todos1 + todos2;
 
-        @goals = Goal.find(:all, 
-                           :conditions => 'completed != 1', 
-                           :order => 'priority');
+        @goals = Goal.where('completed != 1')
+                     .order('priority')
+                     .all;
                            
-        @recent_notes = Note.find(:all,
-                                  :conditions => "is_favorite = 0 and deleted_on is null",
-                                  :order => 'created_on desc',
-                                  :limit => 5);
+        @recent_notes = Note.where("is_favorite = 0 and deleted_on is null")
+                            .order('created_on desc')
+                            .limit(5)
+                            .all;
                               
-        @favorite_notes = Note.find(:all,
-                                  :conditions => 'is_favorite = 1 and deleted_on is null',
-                                  :order => 'created_on asc');
-#                                  :limit => 0);
+        @favorite_notes = Note.where('is_favorite = 1 and deleted_on is null')
+                              .order('created_on asc')
+                              .all;
 
-        @countdowns = Countdown.find(:all, 
-            :conditions => 'on_homepage = 1',
-            :order      => 'target_date');
+        @countdowns = Countdown.where('on_homepage = 1')
+                               .order('target_date')
+                               .all;
 
         wday = Time.now.wday;
         mon = Time.now() - ((wday - 0) * 86400);
-        @entries = Entry.find(:all, :conditions => "task_date >= '#{mon.to_s(:db)}'", :order => 'task_date,entry_date');
+        @entries = Entry.where("task_date >= '#{mon.to_s(:db)}'")
+                        .order('task_date,entry_date')
+                        .all;
 
         begin
             # Default set of tickets, uses Jira Filter set in prefs.

@@ -1,15 +1,17 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# encoding: UTF-8
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110109044139) do
+ActiveRecord::Schema.define(:version => 20120615154028) do
 
   create_table "countdowns", :force => true do |t|
     t.string   "title",                          :null => false
@@ -24,11 +26,13 @@ ActiveRecord::Schema.define(:version => 20110109044139) do
     t.date     "task_date",                        :null => false
     t.datetime "entry_date",                       :null => false
     t.string   "ticket_num"
-    t.string   "subject",                          :null => false
+    t.string   "subject",     :default => "",      :null => false
     t.text     "description",                      :null => false
     t.string   "category",    :default => "Other", :null => false
     t.integer  "goal_id"
   end
+
+  add_index "entries", ["id"], :name => "id", :unique => true
 
   create_table "goals", :force => true do |t|
     t.integer  "priority",                            :null => false
@@ -64,16 +68,6 @@ ActiveRecord::Schema.define(:version => 20110109044139) do
     t.datetime "updated_at"
   end
 
-  create_table "scenarios", :force => true do |t|
-    t.string   "title",         :null => false
-    t.text     "given",         :null => false
-    t.string   "when",          :null => false
-    t.text     "then",          :null => false
-    t.integer  "user_story_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "todos", :force => true do |t|
     t.integer  "priority",                                        :null => false
     t.string   "title",                                           :null => false
@@ -83,25 +77,6 @@ ActiveRecord::Schema.define(:version => 20110109044139) do
     t.date     "due_on"
     t.integer  "list_id"
     t.string   "description",  :limit => 1024
-  end
-
-  create_table "user_stories", :force => true do |t|
-    t.string   "title",                  :null => false
-    t.integer  "priority",               :null => false
-    t.integer  "estimate",               :null => false
-    t.string   "role",                   :null => false
-    t.string   "feature",                :null => false
-    t.string   "benefit",                :null => false
-    t.string   "jira_ticket"
-    t.integer  "user_story_category_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "user_story_categories", :force => true do |t|
-    t.string   "name",       :limit => 32, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

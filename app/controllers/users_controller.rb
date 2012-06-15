@@ -4,7 +4,7 @@
 class UsersController < ApplicationController
 
     before_filter :authorize, :except => :login;
-
+    respond_to :html;
     ############################################################################
     def login
         session[:user_id] = nil;
@@ -50,17 +50,15 @@ class UsersController < ApplicationController
     ############################################################################
     def update
 
-        user = User.user; #User.find(params[:id])
+        user = User.user;
 
         respond_to do |format|
             if user.update_attributes(params[:user])
                 flash[:notice] = 'User was successfully updated.'
                 user.update_email_config();
                 format.html { redirect_to(:controller => 'main', :action => 'home') }
-                format.xml  { head :ok }
             else
                 format.html { render :action => "edit" }
-                format.xml  { render :xml => user.errors, :status => :unprocessable_entity }
             end
         end
     end

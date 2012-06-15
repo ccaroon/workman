@@ -2,6 +2,8 @@
 # $Id: todos_controller.rb 1535 2009-07-14 15:03:50Z ccaroon $
 ################################################################################
 class TodosController < ApplicationController
+  
+    respond_to :html;
     ############################################################################
     def index
 
@@ -13,20 +15,10 @@ class TodosController < ApplicationController
         @todos = Todo.paginate(:page => params[:page],
             :conditions => conditions,
             :order => 'completed, completed_on desc, priority');
-
-        respond_to do |format|
-            format.html # index.html.erb
-            format.xml  { render :xml => @todos }
-        end
     end
     ############################################################################
     def show
         @todo = Todo.find(params[:id])
-
-        respond_to do |format|
-            format.html # show.html.erb
-            format.xml  { render :xml => @todo }
-        end
     end
     ############################################################################
     def new
@@ -35,17 +27,10 @@ class TodosController < ApplicationController
         if(params[:list_id])
           @todo.list = List.find(params[:list_id]);
         end
-
-        respond_to do |format|
-            format.html { render :template => 'todos/new_edit'}
-            format.xml  { render :xml => @todo }
-        end
     end
     ############################################################################
     def edit
         @todo = Todo.find(params[:id]);
-
-        render :template => 'todos/new_edit';
     end
     ############################################################################
     def create
@@ -63,10 +48,8 @@ class TodosController < ApplicationController
                         redirect_to(@todo)
                     end
                 }
-                format.xml  { render :xml => @todo, :status => :created, :location => @todo }
             else
                 format.html { render :action => "new" }
-                format.xml  { render :xml => @todo.errors, :status => :unprocessable_entity }
             end
         end
     end
@@ -86,10 +69,8 @@ class TodosController < ApplicationController
                         redirect_to(@todo)
                     end
                 }
-                format.xml  { head :ok }
             else
                 format.html { render :action => "edit" }
-                format.xml  { render :xml => @todo.errors, :status => :unprocessable_entity }
             end
         end
     end
@@ -100,7 +81,6 @@ class TodosController < ApplicationController
 
         respond_to do |format|
             format.html { redirect_to :back }
-            format.xml  { head :ok }
         end
     end
     ############################################################################

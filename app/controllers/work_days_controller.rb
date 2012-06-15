@@ -1,11 +1,9 @@
 ################################################################################
 # $Id: work_days_controller.rb 1539 2009-07-30 14:22:54Z ccaroon $
 ################################################################################
-require 'work_day';
-
 class WorkDaysController < ApplicationController
+
     respond_to :html;
-    
     ############################################################################
     def index
         date = params[:date].nil? ? Date.today : Date.strptime(params[:date], '%Y%m%d');

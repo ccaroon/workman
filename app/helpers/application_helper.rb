@@ -65,7 +65,6 @@ EOF
             [action_image_tag(:todos),   {:controller => 'todos'}],
             [action_image_tag(:notes),   {:controller => 'notes'}],
             [action_image_tag(:countdowns),   {:controller => 'countdowns'}],
-            [action_image_tag(:user_stories), {:controller => 'user_stories'}],
             [action_image_tag(:reports), {:controller => 'reports', :action => 'by_category'}],
         ]
     end

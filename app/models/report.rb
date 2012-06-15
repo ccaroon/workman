@@ -1,9 +1,6 @@
 ################################################################################
 # $Id: report.rb 1724 2009-12-11 21:35:34Z ccaroon $
 ################################################################################
-require 'date';
-require 'entry';
-
 class Report
 
     attr_accessor :start_date, :end_date, :complete_goals, :incomplete_goals,

@@ -10,7 +10,7 @@ class CountdownsController < ApplicationController
     end
     ############################################################################
     def show
-        @countdown = Countdown.where(:id => params[:id]).first;
+        @countdown = Countdown.find(params[:id]);
     end
     ############################################################################
     def new
@@ -18,7 +18,7 @@ class CountdownsController < ApplicationController
     end
     ############################################################################
     def edit
-        @countdown = Countdown.where(:id => params[:id]).first;
+        @countdown = Countdown.find(params[:id]);
     end
     ############################################################################
     def create
@@ -37,7 +37,7 @@ class CountdownsController < ApplicationController
     ############################################################################
     def update
         params[:countdown][:target_date] = parse_out_target_date(params);
-        @countdown = Countdown.where(:id => params[:id]).first;
+        @countdown = Countdown.find(params[:id]);
 
         respond_to do |format|
             if @countdown.update_attributes(params[:countdown])
@@ -50,7 +50,7 @@ class CountdownsController < ApplicationController
     end
     ############################################################################
     def destroy
-        @countdown = Countdown.where(:id => params[:id]).first;
+        @countdown = Countdown.find(params[:id]);
         @countdown.destroy;
 
         respond_to do |format|

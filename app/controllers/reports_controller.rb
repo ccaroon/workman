@@ -4,10 +4,9 @@
 require 'bluecloth';
 require 'date';
 
-require 'entry';
-
 class ReportsController < ApplicationController
 
+    respond_to :html;
     ############################################################################
     def by_day
         date = params[:date].nil? ? Date.today : Date.strptime(params[:date], '%Y%m%d');
@@ -64,10 +63,9 @@ class ReportsController < ApplicationController
     ############################################################################
     def render_report
         markdown = BlueCloth.new(render_to_string(:layout => false));
-        
+
         respond_to do |format|
             format.html {render :layout => false, :text => markdown.to_html}
-            format.text {render :layout => false, :text => markdown.to_s}
         end
     end
 end
